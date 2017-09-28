@@ -13,7 +13,7 @@ function char_notspace_butlast() {
 }
 
 function import_name() {
-    echo $@ | grep -oP "(?<=import )[^ ]+$" | xargs
+    echo $@ | grep -oP "(?<=import )[^ ]+$"
 }
 
 function import_get_imports() {
