@@ -1,6 +1,8 @@
 . ~/mromay_bashrc/imports.sh
 import char
 import logging
+import odoo
+import docker
 
 function post_json() {
 	json=$(to_json "${@:2}")
