@@ -5,4 +5,5 @@ function char_count() {
 	echo $@ | grep -o '.' | wc -l
 }
 
+
 loaded char
