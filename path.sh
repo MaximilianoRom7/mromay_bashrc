@@ -10,4 +10,4 @@ function path_last() {
     grep -oP "(?<=/)[^/]+$" <<< $1
 }
 
-loaded process
+loaded path

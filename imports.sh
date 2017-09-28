@@ -1,7 +1,17 @@
 global_path=~/mromay_bashrc
-# . $global_path/char.sh
-. $global_path/path.sh
 
+
+function import() {
+    if [ ! "$(grep -o ' '$1' ' <<< $global_imports)" ]
+    then
+	global_imports=$global_imports" "$1" "
+	. $global_path/$1.sh
+    fi
+}
+
+import char
+import path
+import logging
 
 function char_notspace_butlast() {
     : '
@@ -31,16 +41,13 @@ function import_get_imports() {
 }
 
 function import_test_circular() {
-    import_get_imports
+    if [ ! $global_imports ]
+    then
+	echo import_test_circular
+	echo $global_imports
+	import_get_imports
+    fi
 }
 
-function import() {
-    . $global_path/$1.sh
-}
-
-if [ ! $global_imports ]
-then
-    import_test_circular
-    echo import_test_circular
-    # echo $global_imports
-fi
+# import_test_circular
+# loaded imports

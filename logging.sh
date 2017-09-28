@@ -7,3 +7,5 @@ function loaded() {
 	echo "custom "$1" loaded ..."
     fi
 }
+
+loaded logging
