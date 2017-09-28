@@ -5,5 +5,6 @@ import odoo
 import docker
 import json
 import git
+import files
 
 loaded base

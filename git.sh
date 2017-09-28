@@ -1,5 +1,6 @@
 . ~/mromay_bashrc/imports.sh
 import path
+import logging
 
 local_git_github_user_repos=https://api.github.com/users/*/repos
 
@@ -40,13 +41,22 @@ function git_clone_repos_user() {
     while read l
     do
 	d=$(path_no_ext $(path_last $l))
-	if [ ! -d $d ]
-	then
-	    git clone $l
+	# do not clone the entirey odoo repository is too big
+	# and we alredy have it
+	if [ ! $(egrep "^odoo$" <<< $d) ]
+	    then
+	    if [ ! -d $d ]
+	    then
+	        git clone $l
+	    fi
+	    cd $d
+	    echo
+	    echo git fetch $l
+	    git fetch $l
+	    cd ..
 	fi
-	cd $d
-	git fetch
-	cd ..
     done < <(echo $urls)
     cd ..
 }
+
+loaded git
