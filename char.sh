@@ -2,7 +2,7 @@
 import logging
 
 function char_count() {
-	echo $@ | grep -o '.' | wc -l
+    echo $@ | grep -o '.' | wc -l
 }
 
 
