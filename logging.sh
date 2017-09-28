@@ -4,7 +4,7 @@ import vars
 function loaded() {
     if [ $global_logging ]
     then
-	echo "custom "$1" loaded ..."
+	echo "loaded "$1
     fi
 }
 

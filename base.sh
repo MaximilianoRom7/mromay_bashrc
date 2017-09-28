@@ -4,5 +4,6 @@ import char
 import odoo
 import docker
 import json
+import git
 
 loaded base
