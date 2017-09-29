@@ -44,11 +44,10 @@ function odoo_choose_addons_folder() {
     IFS=
     addons_folders=$(odoo_find_addons_folders | egrep -v /repos/)
     lines=$(wc -l <<< $addons_folders)
+    echo $addons_folders | cat -n
     option=-1
     while [ $option -gt $lines ] || [ $option -lt 0 ]
     do
-	clear
-	echo $addons_folders | cat -n
 	echo -n "Choose an option: "
 	read option
 	if [ ! $(grep_num $option) ]
