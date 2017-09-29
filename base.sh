@@ -15,5 +15,6 @@ import git
 import files
 import grep
 import sort
+import custom
 
 loaded base
