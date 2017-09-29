@@ -1,4 +1,5 @@
 . $home/mromay_bashrc/imports.sh
+import grep
 import logging
 
 function odoo_services_test_load() {
@@ -28,6 +29,10 @@ function odoo_services_watch() {
 	echo -e $status | cgrep -i "^.|odoo-.*|active: "
 	sleep 2
     done
+}
+
+function odoo_view_models() {
+    cgrep ">[^<]+<" -ri --include \*.xml | egrep "<field name=\"model\"" | tr -s ' ' | less
 }
 
 loaded odoo

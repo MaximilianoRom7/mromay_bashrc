@@ -1,3 +1,6 @@
+# delete variable so it reloads all the imports
+global_imports=
+
 if [ -d ~/mromay_bashrc ]
 then
     home=~
@@ -16,5 +19,6 @@ import files
 import grep
 import sort
 import custom
+import reloading
 
 loaded base
