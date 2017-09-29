@@ -9,5 +9,9 @@ function greprf() {
     egrep ":.*$1" | less
 }
 
+function grep_num() {
+    egrep "^[0-9]+$" <<< $1
+}
+
 
 loaded grep
