@@ -14,10 +14,17 @@ function odoo_services_test_load() {
 }
 
 function odoo_services_watch() {
+    IFS=
     while $(true)
     do
+	st1=$(systemctl status odoo-1)
+	st2=$(systemctl status odoo-2)
+	st3=$(systemctl status odoo-3)
+	st4=$(systemctl status odoo-4)
+	st5=$(systemctl status odoo-5)
+	status=$(cat <(echo $st1) <(echo $st2) <(echo $st3) <(echo $st4) <(echo $st5))
 	clear
-	cat <(systemctl status odoo-1) <(systemctl status odoo-2) <(systemctl status odoo-3) <(systemctl status odoo-4) <(systemctl status odoo-5) | egrep -i "^.|odoo-.*|active: "
+	echo $status | egrep -i "^.|odoo-.*|active: "
 	sleep 2
     done
 }
