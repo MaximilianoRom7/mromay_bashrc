@@ -17,14 +17,15 @@ function odoo_services_watch() {
     IFS=
     while $(true)
     do
-	st1=$(systemctl status odoo-1)
-	st2=$(systemctl status odoo-2)
-	st3=$(systemctl status odoo-3)
-	st4=$(systemctl status odoo-4)
-	st5=$(systemctl status odoo-5)
-	status=$(cat <(echo $st1) <(echo $st2) <(echo $st3) <(echo $st4) <(echo $st5))
+	status=""
+	nl=" \n \n \n "
+	status=$status$nl$(systemctl status odoo-1)
+	status=$status$nl$(systemctl status odoo-2)
+	status=$status$nl$(systemctl status odoo-3)
+	status=$status$nl$(systemctl status odoo-4)
+	status=$status$nl$(systemctl status odoo-5)
 	clear
-	echo $status | egrep -i "^.|odoo-.*|active: "
+	echo -e $status | cgrep -i "^.|odoo-.*|active: "
 	sleep 2
     done
 }
