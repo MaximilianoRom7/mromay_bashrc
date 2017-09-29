@@ -13,7 +13,7 @@ function json_post() {
 }
 
 function json() {
-    :'
+    : '
     json a 1 b 2 c 3
     >>> {"a": "1", "b": "2", "c": "3"}
     '
