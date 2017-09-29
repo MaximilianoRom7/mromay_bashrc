@@ -1,4 +1,5 @@
 . $home/mromay_bashrc/imports.sh
+import sort
 import grep
 import logging
 
@@ -33,6 +34,25 @@ function odoo_services_watch() {
 
 function odoo_view_models() {
     cgrep ">[^<]+<" -ri --include \*.xml | egrep "<field name=\"model\"" | tr -s ' ' | less
+}
+
+function odoo_find_addons_folders() {
+    find ~ -type d | egrep -o ".*(/odoo/|/openerp/)addons/" | bsort
+}
+
+function odoo_choose_addons_folder() {
+    IFS=
+    addons_folders=$(odoo_find_addons_folders | egrep -v /repos/)
+    lines=$(wc -l <<< $addons_folders)
+    echo $addons_folders | cat -n
+    option=-1
+    while [ $option -gt $lines ] || [ $option -lt 0 ]
+    do
+	echo -n "Choose an option: "
+	read option
+    done
+    folder=$(echo $addons_folders | sed $option'q;d')
+    cd $folder
 }
 
 loaded odoo

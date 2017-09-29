@@ -2,7 +2,7 @@
 import logging
 
 function bsort() {
-    sort | uniq
+    uniq | sort | uniq
 }
 
 
