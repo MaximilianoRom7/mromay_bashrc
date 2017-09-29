@@ -1,4 +1,4 @@
-. ~/mromay_bashrc/imports.sh
+. $home/mromay_bashrc/imports.sh
 import logging
 
 function bsort() {

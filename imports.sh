@@ -1,4 +1,4 @@
-global_path=~/mromay_bashrc
+global_path=$home/mromay_bashrc
 
 
 function import() {
