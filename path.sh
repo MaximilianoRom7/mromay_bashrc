@@ -22,4 +22,21 @@ function path_lasts() {
     fi
 }
 
+function path_dirname() {
+    : '
+    Given a number applies N times dirname
+    '
+    while read l
+    do
+	start=0
+	stop=$1
+	while [ $start -lt $stop ]
+	do
+	    l=$(dirname $l)
+	    start=$(( $start + 1 ))
+	done
+	echo $l
+    done
+}
+
 loaded path

@@ -37,7 +37,7 @@ function odoo_view_models() {
 }
 
 function odoo_find_addons_folders() {
-    find ~ -type d | egrep -o ".*(/odoo/|/openerp/)addons/" | bsort
+    find ~ -type d | egrep -o ".*(/odoo[^/]*/|/openerp/)addons/" | bsort
 }
 
 function odoo_choose_addons_folder() {
