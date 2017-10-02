@@ -1,7 +1,9 @@
 . $home/mromay_bashrc/imports.sh
 import sort
 import grep
+import path
 import logging
+import process
 
 function odoo_services_test_load() {
     while $(true)
@@ -38,6 +40,15 @@ function odoo_view_models() {
 
 function odoo_find_addons_folders() {
     find ~ -type d | egrep -o ".*(/odoo[^/]*/|/openerp/)addons/" | bsort
+}
+
+function odoo_find_odoos() {
+    IFS=
+    odoo_find_addons_folders | egrep -v /repos/ | path_dirname 2
+}
+
+function odoo_kill() {
+    ps aux | grep python | grep odoo | grep -v "grep " | process-kill
 }
 
 function odoo_choose_addons_folder() {
