@@ -5,8 +5,12 @@ function grepc() {
     egrep "$1" ${@:2} --color=always | less
 }
 
-function greprf() {
+function greprl() {
     egrep ":.*$1" | less
+}
+
+function greprf() {
+    egrep ".*$1.*:.*" | less
 }
 
 function grep_num() {
