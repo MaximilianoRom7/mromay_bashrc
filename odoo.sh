@@ -29,13 +29,17 @@ function odoo_services_watch() {
 	status=$status$nl$(systemctl status odoo-4)
 	status=$status$nl$(systemctl status odoo-5)
 	clear
-	echo -e $status | cgrep -i "^.|odoo-.*|active: "
+	echo -e $status | grepc -i "^.|odoo-.*|active: "
 	sleep 2
     done
 }
 
+function odoo_view_search() {
+    grepc "$1" -ri --include \*.xml
+}
+
 function odoo_view_models() {
-    cgrep ">[^<]+<" -ri --include \*.xml | egrep "<field name=\"model\"" | tr -s ' ' | less
+    odoo_view_search ">[^<]+<" | egrep "<field name=\"model\"" | tr -s ' ' | less
 }
 
 function odoo_find_addons_folders() {
