@@ -4,6 +4,7 @@ import grep
 import path
 import logging
 import process
+import split
 
 function odoo_services_test_load() {
     while $(true)
@@ -34,8 +35,42 @@ function odoo_services_watch() {
     done
 }
 
+function odoo_addons_change_version() {
+    IFS=
+    split_space_lines $@ | while read l
+    do
+	if [ -d "$l" ]
+	then
+	    echo "Updating ./"$(ls -d $l/)" ..."
+	    odoo_addons_versions $l
+	fi
+    done
+}
+
+function odoo_addons_versions() {
+    if [ $1 ]
+    then
+	p=$(pwd)
+	split_space_lines $@ | while read t
+	do
+	    if [ $t ] && [ -d $t ]
+	    then
+		cd $t
+		egrep -rn ".version.:" --include __openerp__.py --include __manifest__.py | while read l
+		do
+		    echo $1/$l
+		done
+		cd $p
+	    fi
+	done | column -t
+	cd $p
+    else
+	egrep -rn ".version.:" --include __openerp__.py --include __manifest__.py | column -t
+    fi
+}
+
 function odoo_view_search() {
-    grepc "$1" -ri --include \*.xml
+    grepc "$1" $2 $3 $4 $5 $6 -ri --include \*.xml
 }
 
 function odoo_view_models() {
