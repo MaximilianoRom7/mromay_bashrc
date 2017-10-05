@@ -68,7 +68,7 @@ function odoo_addons_versions() {
 	    if [ $t ] && [ -d $t ]
 	    then
 		cd $t
-		egrep -rn ".version.:" --include __openerp__.py --include __manifest__.py | while read l
+		egrep -Rn ".version.:" --include __openerp__.py --include __manifest__.py | while read l
 		do
 		    echo $1/$l
 		done
@@ -77,20 +77,20 @@ function odoo_addons_versions() {
 	done | column -t
 	cd $p
     else
-	egrep -rn ".version.:" --include __openerp__.py --include __manifest__.py | column -t
+	egrep -Rn ".version.:" --include __openerp__.py --include __manifest__.py | column -t
     fi
 }
     
 function odoo_fields_find() {
-    egrep -r "$1 = field[^(]+\(" . --include \*.py
+    egrep -R "$1 = field[^(]+\(" . --include \*.py
 }
 
 function odoo_models() {
-    egrep -r "(_name = ['\"]|_inherit = ['\"])" . --include \*.py
+    egrep -R "(_name = ['\"]|_inherit = ['\"])" . --include \*.py
 }
 
 function odoo_view_search() {
-    grepc "$1" $2 $3 $4 $5 $6 -ri --include \*.xml
+    grepc "$1" $2 $3 $4 $5 $6 -Ri --include \*.xml
 }
 
 function odoo_view_models() {
