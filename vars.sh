@@ -1,1 +1,1 @@
-global_logging=1
+global_logging=

@@ -1,6 +1,11 @@
 . $home/mromay_bashrc/imports.sh
 import logging
 
+function downloads() {
+    find /root/Downloads -maxdepth 1 2> /dev/null
+    find /home/*/Downloads -maxdepth 1 2> /dev/null
+}
+
 function tree_sort_time() {
     tree -L 1 -D --timefmt '%H:%M:%S %s' | sort
 }

@@ -8,5 +8,8 @@ function python_package_path() {
     fi
 }
 
+function python_defs() {
+    egrep -R "^[ \t]+def [^ ]+):" --include \*.py 2> /dev/null
+}
 
 loaded python

@@ -8,6 +8,10 @@ function grepc() {
     egrep "$1" $2 $3 $4 $5 $6 --color=always | less
 }
 
+function grepext() {
+    egrep $1"$"
+}
+
 function greprl() {
     egrep ":.*$1" | less
 }
