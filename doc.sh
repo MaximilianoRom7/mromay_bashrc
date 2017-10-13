@@ -28,6 +28,12 @@ function doc_function() {
     WILL RETURN THE DOCUMENTATION OF THIS FUNCTION.
     '
     IFS=
+    # 70 charactes width
+    echo
+    echo "----------------------------------------------------------------------"
+    echo "    $1:"
+    echo "----------------------------------------------------------------------"
+    echo
     egrep -nR "^function $1\(\)" $home/mromay_bashrc | while read l
     do
 	v1=$(cut -d ':' -f1 <<< $l)
@@ -42,17 +48,19 @@ function doc_function() {
 	if [ "$docs" ]
 	then
 	    # 70 charactes width
-	    echo
-	    echo "----------------------------------------------------------------------"
-	    echo "    $1:"
-	    echo "----------------------------------------------------------------------"
-	    echo
 	    echo $docs
 	    echo
 	    echo "----------------------------------------------------------------------"
 	    echo
 	fi
     done
+}
+
+function doc_list_functions() {
+    egrep -R "^function [^ ]+\(\)" $home/mromay_bashrc | grep -oP "[^ ]+(?=\()" | while read l
+    do
+	doc_function $l
+    done | less
 }
 
 loaded doc
