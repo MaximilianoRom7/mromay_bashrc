@@ -16,6 +16,9 @@ function sum_column() {
     THIS FUNCTIONS GETS THE SECOND COLUMN AND SUM IT UP
     1+2+3 = 6
     RETURNS 6
+    ANOTHER EXAMPLE
+    du -s ~/* | sum_column $"\t" 1
+    RETURNS THE SUM OF ALL THE FILES AND FOLDERS FROM MY HOME DIRECTORY
     '
      cut -d $1 -f $2  | paste -sd + | bc
 }

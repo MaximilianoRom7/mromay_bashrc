@@ -2,6 +2,7 @@
   FUNCTIONS FOR BASH FUNCTION DOCUMENTATION
 '
 . $home/mromay_bashrc/imports.sh
+import sort
 import logging
 
 # the maximum amount of lines the documentation can have
@@ -57,7 +58,7 @@ function doc_function() {
 }
 
 function doc_list_functions() {
-    egrep -R "^function [^ ]+\(\)" $home/mromay_bashrc | grep -oP "[^ ]+(?=\()" | while read l
+    egrep -R "^function [^ ]+\(\)" $home/mromay_bashrc | grep -oP "[^ ]+(?=\()" | bsort | while read l
     do
 	doc_function $l
     done | less
