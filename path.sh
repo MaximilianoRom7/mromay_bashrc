@@ -33,7 +33,12 @@ function path_dirname() {
 	while [ $start -lt $stop ]
 	do
 	    l=$(dirname $l)
-	    start=$(( $start + 1 ))
+	    if [ $l = "/" ]
+	    then
+		start=$stop
+	    else
+		start=$(( $start + 1 ))
+	    fi
 	done
 	echo $l
     done

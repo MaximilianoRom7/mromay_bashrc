@@ -90,7 +90,7 @@ function odoo_models() {
 }
 
 function odoo_view_search() {
-    grepc "$1" $2 $3 $4 $5 $6 -Ri --include \*.xml
+    grepc "$1" $2 $3 $4 $5 $6 -Ri --include \*.xml 2> /dev/null
 }
 
 function odoo_view_models() {
