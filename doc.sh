@@ -30,10 +30,11 @@ function doc_function() {
     '
     IFS=
     # 70 charactes width
+    dash="----------------------------------------------------------------------"
     echo
-    echo "----------------------------------------------------------------------"
+    echo $dash
     echo "    $1:"
-    echo "----------------------------------------------------------------------"
+    echo $dash
     echo
     egrep -nR "^function $1\(\)" $home/mromay_bashrc | while read l
     do
@@ -48,10 +49,9 @@ function doc_function() {
 	docs=$(echo $docs | sed -n "/: '$/,/'$/p")
 	if [ "$docs" ]
 	then
-	    # 70 charactes width
 	    echo $docs
 	    echo
-	    echo "----------------------------------------------------------------------"
+	    echo $dash
 	    echo
 	fi
     done
