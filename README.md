@@ -1,6 +1,6 @@
 HOW TO USE:
 
-In your user home directory "~"
+In your user home directory "~" (/home/<user>)
 
 do git clone <This_Repo_Url>
 
