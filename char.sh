@@ -2,14 +2,33 @@
 import logging
 
 function char_count() {
+    : '
+    GIVEN TEXT COUNTS HOW MANY CHARACTERS THE LINES HAVE
+    FOR EXAMPLE
+    echo asdasdasd | char_count
+    RETURNS 9
+    '
     echo $@ | grep -o '.' | wc -l
 }
 
 function char_line_width() {
+    : '
+    GIVEN LINES THIS FUNCTION CUTS THE LINES AT THE WIDTH
+    SPECIFIED FOR THE ARGUMENT
+    echo 1234567890 | char_line_width 3
+    RETURNS 123
+    '
     egrep -o "^.{1,"$1"}"
 }
 
 function char_repeat() {
+    : '
+    GIVEN TWO ARGUMENTS A CHARACTER AND A NUMBER
+    REPEATS THE CHARACTER AS MANY TIMES AS THE NUMBER
+    FOR EXAMPLE
+    char_repeat x 5
+    RETURNS xxxxx
+    '
     if [ ! $2 ]
     then
 	return 1
