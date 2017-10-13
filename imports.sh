@@ -28,7 +28,7 @@ function import_name() {
 
 function import_get_imports() {
     IFS=
-    sources=$(grep -R "^import" $global_path)
+    sources=$(grep -R "^import" $global_path 2> /dev/null)
     global_imports=" "
     while read l
     do
