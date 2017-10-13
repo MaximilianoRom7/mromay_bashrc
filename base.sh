@@ -25,5 +25,6 @@ import python
 import split
 import filter
 import doc
+import math
 
 loaded base
