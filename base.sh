@@ -24,5 +24,6 @@ import process
 import python
 import split
 import filter
+import doc
 
 loaded base
