@@ -41,6 +41,19 @@ function odoo_addons_change_version() {
     THAT MEANS THAT BOTH FUNCTION EXISTS
     odoo_addons_change_version
     odoo_addons_change_versions
+    THEY ARE DIFFERENT
+
+    GIVEN A VERSION NUMBER AND A ADDON NAME, REPLACES THIS VERSION
+    IN THE MANIFEST OF THIS ADDON
+
+    THIS FUNCTION IS DIFFERENT FROM THE odoo_addons_change_versions
+    BECOUSE THIS ONE IS APPLY FOR EVERY ADDON ONE AT THE TIME
+
+    odoo_addons_change_versions <NEW VERSION> <ADDON FOLDER NAME>
+
+    FOR EXAMPLE:
+    odoo_addons_change_versions 10.0.0.12 l10n_ar_afipws
+    REPLACES THE VERSION 10.0.0.12 IN THE l10n_ar_afipws ADDON
     '
     c1=$(cut -d ':' -f1 <<< $1)
     if [ -f $c1 ]
@@ -58,6 +71,18 @@ function odoo_addons_change_versions() {
     THAT MEANS THAT BOTH FUNCTION EXISTS
     odoo_addons_change_version
     odoo_addons_change_versions
+    THEY ARE DIFFERENT
+
+    GIVEN A VERSION NUMBER AND A FOLDER, SEARCHS WITHIN THIS FOLDER
+    ALL THE ADDONS IT CAN FOUND AND REPLACES THE VERSION NUMBER
+    IN ALL OF THEM
+    THIS FUNCTION USES "odoo_addons_change_version"
+
+    odoo_addons_change_versions <NEW VERSION> <ADDON GROUP FOLDER NAME>
+
+    FOR EXAMPLE:
+    odoo_addons_change_versions 10.0.0.12 locale_ar
+    REPLACES THE VERSION 10.0.0.12 IN ALL THE ADDONS WITHIN locale_ar
     '
     IFS=
     odoo_addons_version=$1
