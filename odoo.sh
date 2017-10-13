@@ -82,6 +82,11 @@ function odoo_addons_versions() {
 }
     
 function odoo_fields_find() {
+    : '
+    GIVEN A FIELD NAME THIS FUNCTION RETURNS ALL THE PYTHON
+    FILES THAT CONTAINS THE FIELD
+    YOU HAVE TO BE IN A ODOO FOLDER
+    '
     egrep -R "^[^#]+$1 = field[^(]+\(" . --include \*.py 2> /dev/null | egrep -v /locale_ar
 }
 
