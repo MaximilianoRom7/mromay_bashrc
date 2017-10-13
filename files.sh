@@ -10,6 +10,41 @@ function tree_sort_time() {
     tree -L 1 -D --timefmt '%H:%M:%S %s' | sort
 }
 
+function chunder() {
+    : '
+    GIVEN A FOLDER CHANGES ALL FILES NAMES WITHIN THAT DIRECTORY
+    REPLACING ALL THE SPACES FOR UNDERSCORES
+    FOR EXAMPLE IF THE DIRECTORY HAS THE FOLLOWING FILES
+    asd asd.txt
+    ddd ddd.js
+    CALLING "chunder" IN THIS DIRECTORY
+    THE FILE NAMES WILL BE CHANGED FOR
+    asd_asd.txt
+    ddd_ddd.js
+    '
+    if [ $1 ]
+    then
+	d=$1
+    else
+	d=.
+    fi
+    ls $d/* | while read l
+    do
+	# if the file contains a space
+	if [ $(grep " " <<< "$l") ]
+	then
+	    # then replace splace for underscore
+	    f=$(sed 's/ /_/g' <<< $l)
+	    # unless the file alredy exists
+	    if [ ! -f $f ]
+	    then
+		echo $l" >>> "$f
+		mv $l $f
+	    fi
+	fi
+    done
+}
+
 function tree_watch_sort_time() {
     watch -n 2 "tree -L 1 -D --timefmt '%H:%M:%S %s' | sort"
 }
