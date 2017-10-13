@@ -2,6 +2,10 @@
 import logging
 
 function downloads() {
+    : '
+    LIST ALL THE FILES IN THE DOWNLOADS DIRECTORIES
+    OF ALL USERS IF IT HAS PERMISSIONS
+    '
     find /root/Downloads -maxdepth 1 2> /dev/null
     find /home/*/Downloads -maxdepth 1 2> /dev/null
 }
