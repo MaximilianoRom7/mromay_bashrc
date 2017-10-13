@@ -11,14 +11,51 @@ function grepc() {
 }
 
 function grepext() {
+    : '
+    GIVEN AND EXTENSION AND A LIST OF FILES RETURNS
+    THE LIST OF FILES THAT MATCHES THE EXTENSION AT THE END
+
+    FOR EXAMPLE:
+    echo __init__.py | grepext txt
+    RETURNS NOTHING, BUT
+
+    echo __init__.py | grepext py
+    RETURNS __init__.py
+    '
     egrep $1"$"
 }
 
-function greprl() {
+function greprr() {
+    : '
+    AFTER A RECURSIVE GREP LIKE THIS "grep -R $1"
+    AND AN ARGUMENT TO MATCH FOR
+    THIS FUNCTION RETURNS THE LINES THAT MATCH THAT ARGUMENT
+    AT THE RIGHT OF THE COLON ":"
+    FOR EXAMPLE
+    echo "__init__.py: def func():" | greprr asd
+    RETURNS NOTHING BECOUSE AT THE RIGHT OF THE COLON "asd" DIDNT MATCH, BUT
+
+    echo "__init__.py: def func():" | greprr func
+    RETURNS __init__.py: def func():
+    BECOUSE AT THE RIGTH OF THE COLON THERE IS " def func():" AND "func" WAS FOUND
+    '
     egrep ":.*$1" | less
 }
 
-function greprf() {
+function greprl() {
+    : '
+    AFTER A RECURSIVE GREP LIKE THIS "grep -R $1"
+    AND AN ARGUMENT TO MATCH FOR
+    THIS FUNCTION RETURNS THE LINES THAT MATCH THAT ARGUMENT
+    AT THE LEFT OF THE COLON ":"
+    FOR EXAMPLE
+    echo "__init__.py: def func():" | greprl asd
+    RETURNS NOTHING BECOUSE AT THE LEFT OF THE COLON "asd" DIDNT MATCH, BUT
+
+    echo "__init__.py: def func():" | greprl init
+    RETURNS __init__.py: def func():
+    BECOUSE AT THE LEFT OF THE COLON THERE IS "__init__.py" AND "init" WAS FOUND
+    '
     egrep ".*$1.*:.*" | less
 }
 
