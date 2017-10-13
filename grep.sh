@@ -23,6 +23,17 @@ function greprf() {
 }
 
 function grep_num() {
+    : '
+    GIVEN TEXT MATCHES A EXACT NUMBER FROM THE BEGINNING TO THE END
+    IN CASE IS NOT A NUMBER RETURNS NOTHING
+    THAN MEANDS THAT FOR EXAMPLE:
+
+    echo a11112 | grep_num
+    RETURNS NOTHING, BUT
+
+    echo 11112 | grep_num
+    RETURNS 11112
+    '
     egrep "^[0-9]+$" <<< $1
 }
 
