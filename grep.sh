@@ -2,9 +2,11 @@
 import logging
 
 function grepc() {
-    # the substitution removes the spaces this is an error
-    # in order to fix it replace ${@:2} for $2 $3 $4 ...
-    # egrep "$1" ${@:2} --color=always | less
+    : '
+    the substitution removes the spaces this is an error
+    in order to fix it replace ${@:2} for $2 $3 $4 ...
+    egrep "$1" ${@:2} --color=always | less
+    '
     egrep "$1" $2 $3 $4 $5 $6 --color=always | less
 }
 
