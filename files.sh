@@ -14,6 +14,14 @@ function tree_watch_sort_time() {
     watch -n 2 "tree -L 1 -D --timefmt '%H:%M:%S %s' | sort"
 }
 
+function files_sumsize() {
+    : '
+    GIVEN A DIRECTORY SUMS UP THE SIZES OF ALL
+    THE FILES AND FOLDERS OF THIS DIRECTORY
+    '
+    du -s $1/* | sum_column $'\t' 1
+}
+
 function files_count_lines() {
     read -t 0.2 files
     IFS=
