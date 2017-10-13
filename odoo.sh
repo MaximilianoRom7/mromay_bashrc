@@ -36,6 +36,12 @@ function odoo_services_watch() {
 }
 
 function odoo_addons_change_version() {
+    : '
+    ATTENTION: THIS FUNCTION EXIST WITH AND WITHOUT S AT THE END
+    THAT MEANS THAT BOTH FUNCTION EXISTS
+    odoo_addons_change_version
+    odoo_addons_change_versions
+    '
     c1=$(cut -d ':' -f1 <<< $1)
     if [ -f $c1 ]
     then
@@ -47,6 +53,12 @@ function odoo_addons_change_version() {
 }
 
 function odoo_addons_change_versions() {
+    : '
+    ATTENTION: THIS FUNCTION EXIST WITH AND WITHOUT S AT THE END
+    THAT MEANS THAT BOTH FUNCTION EXISTS
+    odoo_addons_change_version
+    odoo_addons_change_versions
+    '
     IFS=
     odoo_addons_version=$1
     split_space_lines $2 $3 $4 $5 $6 | while read l
