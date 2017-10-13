@@ -7,6 +7,12 @@ import process
 import split
 
 function odoo_services_test_load() {
+    : '
+    IN THE DEVELOPMENT TESTING SERVER THERE ARE 5 ODOOS RUNNING
+    THIS FUNCTION MAKES AN HTTP CALL TO EVERY ONE OF THESE ODOOS
+    EVERY 0.1 SECONDS
+    THIS IS A LOADING TEST
+    '
     while $(true)
     do
 	curl 0.0.0.0:8050
