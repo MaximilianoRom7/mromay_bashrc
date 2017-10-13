@@ -26,5 +26,6 @@ import split
 import filter
 import doc
 import math
+import eval
 
 loaded base

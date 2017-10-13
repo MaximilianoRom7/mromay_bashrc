@@ -20,7 +20,7 @@ function sum_column() {
     du -s ~/* | sum_column $"\t" 1
     RETURNS THE SUM OF ALL THE FILES AND FOLDERS FROM MY HOME DIRECTORY
     '
-     cut -d $1 -f $2  | paste -sd + | bc
+    cut -d $1 -f $2  | paste -sd + | bc
 }
 
 loaded math
