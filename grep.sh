@@ -102,5 +102,24 @@ function grepip () {
     grep -oE "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
 }
 
+function grep_uncomment () {
+    : '
+    GIVEN TEXT RETURNS THE LINE THAT ARE NOT COMMENTED
+    FOR EXAMPLE
+    """
+    # a
+    b
+    c
+    #d
+    e
+    """ | grep_uncomment
+    RETURNS
+    b
+    c
+    e
+    '
+    grep -oP "^[^#]+(?<=\w|\}|\{).*"
+}
+
 
 loaded grep
