@@ -122,4 +122,26 @@ function grep_uncomment () {
 }
 
 
+function grep_multitail() {
+    : '
+    GIVEN A PATH APPLIES TAIL TO ALL THE *.LOG FILES
+    IN THAT DIRECTORY
+    FOR EXAMPLE
+    grep_multitail /var/log
+    WILL MAKE TAIL IN AL THE LOG FILES IN /VAR/LOG
+    LIKE
+    tail /var/log/Xorg.0.log
+    tail /var/log/Xorg.1.log
+    AT THE SAME TIME
+    '
+    if [[ $3 ]]
+    then
+	ls $1/*.log | while read l; do echo " -f $l"; done | sort | \
+	    awk "((NR + $3) % $2) == 0" | xargs tail
+    else
+	ls $1/*.log | while read l; do echo -en " -f $l"; done | xargs tail
+    fi
+}
+
+
 loaded grep
