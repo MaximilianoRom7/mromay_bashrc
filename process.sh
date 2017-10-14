@@ -23,6 +23,7 @@ function check_binaries() {
     bin_exists_bc=$(bin_exists bc)
     bin_exists_curl=$(bin_exists curl)
     bin_exists_python=$(bin_exists python)
+    bin_exists_nslookup=$(bin_exists nslookup)
 }
 
 check_binaries

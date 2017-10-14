@@ -88,5 +88,19 @@ function grepr_file_content() {
     fi
 }
 
+function grepip () {
+    : '
+    GIVEN TEXT CHECKS IF IT IS A VALID IP ADDRESS
+    FOR EXAMPLE
+    echo 192.168.1.1 | grepip
+    RETURNS
+    192.168.1.1
+    BUT
+    echo a.168.1.1 | grepip
+    RETURNS NOTHING
+    '
+    grep -oE "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
+}
+
 
 loaded grep

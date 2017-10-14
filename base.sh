@@ -27,5 +27,7 @@ import filter
 import doc
 import math
 import eval
+import check
+import net
 
 loaded base
