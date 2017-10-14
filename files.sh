@@ -78,7 +78,27 @@ function files_count_lines() {
 }
 
 function files_with_ext() {
-    find . -type f -name \*.$1
+    : '
+    CAN GIVE TWO ARGUMENTS
+    IF ONE ARGUMENT IS GIVEN IS THE EXTENSION
+    IF TWO ARGUMENTS ARE GIVEN THE FIRST ONE IS THE PATH
+    TO SEARCH AND THE SECOND ONE IS THE EXTENSION
+    FOR EXAMPLE:
+    files_with_ext ~ py
+    WILL SEARCH IN THE PATH ~ FILES WITH EXTENSION py
+    BUT
+    files_with_ext py
+    THIS WILL SEARCH FILES WITH EXTENSION py
+    IN THE CURRENT DIRECTORY
+    '
+    if [ $2 ]
+    then
+	find $1 -type f | grep -E "\.$2$"
+    else
+	find . -type f | grep -E "\.$1$"
+    fi
 }
+
+alias findext=files_with_ext
 
 loaded files
