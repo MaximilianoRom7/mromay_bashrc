@@ -64,4 +64,12 @@ function doc_list_functions() {
     done | less
 }
 
+function functions() {
+    : '
+    LIST ALL THE FUNCTIONS LOADED IN THE SHELL
+    '
+    typeset -f | grep -oE "^[a-zA-Z0-9_-.]+"
+}
+
+
 loaded doc

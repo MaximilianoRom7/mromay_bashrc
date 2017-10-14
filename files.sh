@@ -101,4 +101,24 @@ function files_with_ext() {
 
 alias findext=files_with_ext
 
+function dirdepth() {
+    : '
+    CUTS THE PATH TO THE $2 LENGTH
+    FOR EXAMPLE
+    echo /a/a/a/a | dirdepth 2
+    RETURNS
+    /a/a
+    '
+    if [ ! $2 ]
+    then
+	a=1
+	b=$1
+    else
+	a=$1
+	b=$2
+    fi
+    grep -oE "^(/\w+){$a,$b}"
+}
+
+
 loaded files
