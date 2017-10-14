@@ -120,5 +120,22 @@ function dirdepth() {
     grep -oE "^(/\w+){$a,$b}"
 }
 
+function files_binaries() {
+    : '
+    THIS FUNCTION GETS ALL THE BINARY FILES
+    FROM THE DIRECTORIES IN THE $PATH SYSTEM VARIABLE
+    ~/.bins is a cached file of this function
+    '
+    if [ ! -f ~/.bins ]
+    then
+	echo echo $PATH | tr -s ":" "\n" | while read l
+	do
+	    find $l -type f -executable 2> /dev/null
+	done | tee ~/.bins
+    else
+	cat ~/.bins
+    fi
+}
+
 
 loaded files
