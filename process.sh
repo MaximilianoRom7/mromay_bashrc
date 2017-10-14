@@ -2,6 +2,20 @@
 import logging
 
 
+function bin_exists() {
+    if [ $(which "$1" 2> /dev/null) ]
+    then
+	echo 1
+    fi
+}
+
+function check_binaries() {
+    bin_exists_bc=$(bin_exists bc)
+    bin_exists_python=$(bin_exists python)
+}
+
+check_binaries
+
 function process_ignore() {
     nohup "$@" &
 }

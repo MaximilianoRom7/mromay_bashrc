@@ -1,5 +1,26 @@
 . $home/mromay_bashrc/imports.sh
 import logging
+import process
+
+function ratio() {
+    : '
+    GIVEN TWO ARGUMENTS A AND B RETURNS THE RATIO BETWEEN THEM
+    '
+    a=$(cut -d ':' -f1 <<< $1)
+    b=$(cut -d ':' -f2 <<< $1)
+    if [ $bin_exists_bc ]
+    then
+	# sed is used to replace .75 for 0.75
+	echo $(bc <<< "scale=2; $a / $b" | sed 's/^\./0./g')
+    else
+	if [ $bin_exists_python ]
+	then
+	    python2 -c "a="$a"; b="$b"; print round(a/float(b), 2)"
+	else
+	    echo cannot compute operation
+	fi
+    fi
+}
 
 function sum_column() {
     : '
