@@ -121,7 +121,6 @@ function grep_uncomment () {
     grep -oP "^[^#]+(?<=\w|\}|\{).*"
 }
 
-
 function grep_multitail() {
     : '
     GIVEN A PATH APPLIES TAIL TO ALL THE *.LOG FILES
