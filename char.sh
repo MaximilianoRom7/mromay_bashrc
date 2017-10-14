@@ -21,6 +21,19 @@ function char_line_width() {
     egrep -o "^.{1,"$1"}"
 }
 
+function char_line_width_split() {
+    : '
+    GIVEN LINES THIS FUNCTION SPLITS THE LINES AT THE WIDTH
+    SPECIFIED FOR THE ARGUMENT
+    echo 1234567890 | char_line_width 3
+    RETURNS 123
+    456
+    789
+    0
+    '
+    egrep -o ".{1,"$1"}"
+}
+
 function char_repeat() {
     : '
     GIVEN TWO ARGUMENTS A CHARACTER AND A NUMBER
