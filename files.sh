@@ -140,5 +140,18 @@ function files_binaries() {
     fi
 }
 
+function files_noext() {
+    : '
+    FIND FILES WITHOUT EXTENSION
+    '
+    if [ ! $1 ]
+    then
+	p=.
+    else
+	p=$1
+    fi
+    find $p -type f | egrep -v "/\.git/" | egrep "/[^\.]+$"
+}
+
 
 loaded files
