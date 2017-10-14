@@ -28,14 +28,31 @@ function check_binaries() {
 check_binaries
 
 function process_ignore() {
+    : '
+    CALLS A PROGRAM IN THE BACKGOUND
+    '
     nohup "$@" &
 }
 
+alias ignore=process_ignore
+
 function process-pid() {
+    : '
+    AFTER CALLING PS PIPE THIS FUNCTION TO GET THE PID NUMBERS
+    LIKE THIS
+    ps aux | process-pid
+    '
     tr -s ' ' | cut -d ' ' -f 2
 }
 
 function process-kill() {
+    : '
+    AFTER CALLING PS PIPE THIS FUNCTION
+    TO KILL ALL THOSE PROCESSES
+    LIKE THIS
+    ps aux | grep python | process-kill
+    THIS WILL KILL ALL THE PYTHON PROCESSES
+    '
     IFS=
     while read l
     do
@@ -49,6 +66,5 @@ function process-kill() {
     done
 }
 
-alias ignore=process_ignore
 
 loaded process
