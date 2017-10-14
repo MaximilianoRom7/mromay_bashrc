@@ -30,5 +30,6 @@ import eval
 import check
 import net
 import list
+import message
 
 loaded base
