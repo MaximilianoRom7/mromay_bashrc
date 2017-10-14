@@ -59,5 +59,33 @@ function char_repeat() {
 
 alias less="less -RS"
 
+function char_scape_parent() {
+    : '
+    REPLACES THE CHARACTERS
+    ( FOR \(
+    AND
+    ) FOR \)
+    FOR EXAMPLE
+    echo (a) | char_scape_parent
+    RETURNS
+    \(a\)
+    '
+    sed 's/(/\\(/g' | sed 's/)/\\)/g'
+}
+
+function char_scape_brack() {
+    : '
+    REPLACES THE CHARACTERS
+    [ FOR \[
+    AND
+    ] FOR \]
+    FOR EXAMPLE
+    echo [a] | char_scape_parent
+    RETURNS
+    \[a\]
+    '
+    sed 's/\[/\\\[/g' | sed 's/\]/\\\]/g'
+}
+
 
 loaded char

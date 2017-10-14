@@ -31,5 +31,6 @@ import check
 import net
 import list
 import message
+import program
 
 loaded base

@@ -1,5 +1,6 @@
 . $home/mromay_bashrc/imports.sh
 import logging
+import char
 
 function downloads() {
     : '
@@ -32,18 +33,20 @@ function chunder() {
     else
 	d=.
     fi
-    ls $d/* | while read l
+    command ls -d $d/* | while read l
     do
 	# if the file contains a space
 	if [ $(grep " " <<< "$l") ]
 	then
 	    # then replace splace for underscore
 	    f=$(sed 's/ /_/g' <<< $l)
+	    # f=$(echo $f | char_scape_parent)
+	    # f=$(echo $f | char_scape_brack)
 	    # unless the file alredy exists
 	    if [ ! -f $f ]
 	    then
 		echo $l" >>> "$f
-		mv $l $f
+		mv "$l" "$f"
 	    fi
 	fi
     done
@@ -59,22 +62,6 @@ function files_sumsize() {
     THE FILES AND FOLDERS OF THIS DIRECTORY
     '
     du -s $1/* | sum_column $'\t' 1
-}
-
-function files_count_lines() {
-    read -t 0.2 files
-    IFS=
-    if [ $files ]
-    then
-	xargs -L 1 cat | egrep "^." | wc -l
-    else
-	if [ $1 ]
-	then
-	    files_with_ext $1 | xargs -L 1 cat | egrep "^." | wc -l
-	else
-	    echo "ERROR !"
-	fi
-    fi
 }
 
 function files_with_ext() {
@@ -96,6 +83,22 @@ function files_with_ext() {
 	find $1 -type f | grep -E "\.$2$"
     else
 	find . -type f | grep -E "\.$1$"
+    fi
+}
+
+function files_count_lines() {
+    read -t 0.2 files
+    IFS=
+    if [ $files ]
+    then
+	xargs -L 1 cat | egrep "^." | wc -l
+    else
+	if [ $1 ]
+	then
+	    files_with_ext $1 | xargs -L 1 cat | egrep "^." | wc -l
+	else
+	    echo "ERROR !"
+	fi
     fi
 }
 
