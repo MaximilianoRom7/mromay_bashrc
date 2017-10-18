@@ -22,12 +22,19 @@ function net_myip () {
     echo $p
 }
 
-
 function net_check() {
     : '
     PINGS TO 8.8.8.8 GOOGLE SERVER TO TEST WLAN
     '
     ping 8.8.8.8
 }
+
+function net_check_google() {
+    : '
+    WATCHS FOR EVERY SECOND A CURL TO GOOGLE.COM.AR
+    '
+    watch -n 1 'curl "https://www.google.com.ar/" | egrep -o ".{1,150}"'
+}
+
 
 loaded net
