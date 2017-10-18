@@ -12,16 +12,18 @@ function findd() {
     if [[ $1 && $2 && $3 ]]
     then
 	find $2 -maxdepth $3 -type d -name \*$1\*
-    fi
-    if [[ $1 && $2 ]]
-    then
-	find $2 -type d -name \*$1\*
-    fi
-    if [[ $1 ]]
-    then
-	find . -type d -name \*$1\*
     else
-	find . -type d
+	if [[ $1 && $2 ]]
+	then
+	    find $2 -type d -name \*$1\*
+	else
+	    if [[ $1 ]]
+	    then
+		find . -type d -name \*$1\*
+	    else
+		find . -type d
+	    fi
+	fi
     fi
 }
 
