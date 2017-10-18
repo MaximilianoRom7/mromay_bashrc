@@ -32,5 +32,6 @@ import net
 import list
 import message
 import program
+import find
 
 loaded base
