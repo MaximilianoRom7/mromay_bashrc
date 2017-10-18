@@ -59,4 +59,11 @@ function git_clone_repos_user() {
     cd ..
 }
 
+function git_list_repos() {
+    : '
+    FIND ALL GIT REPOSITORIES IN THE CURRENT PATH
+    '
+    findd | grep -oP "^.*(?=/\.git$)"
+}
+
 loaded git
