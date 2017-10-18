@@ -145,6 +145,16 @@ function odoo_view_models() {
     odoo_view_search ">[^<]+<" | egrep "<field name=\"model\"" | tr -s ' ' | less
 }
 
+function odoo_find_addons() {
+    : '
+    FIND ALL THE ADDONS IN THE CURRENT DIRECTORY
+    '
+    find ~ -type f -name __*__.py | egrep "__openerp__|__manifes__" | while read l
+    do
+	dirname $l
+    done | bsort
+}
+
 function odoo_find_addons_folders() {
     find ~ -type d | egrep -o ".*(/odoo[^/]*/|/openerp/)addons/" | bsort
 }
