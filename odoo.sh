@@ -149,7 +149,7 @@ function odoo_find_addons() {
     : '
     FIND ALL THE ADDONS IN THE CURRENT DIRECTORY
     '
-    find ~ -type f -name __*__.py | egrep "__openerp__|__manifes__" | while read l
+    find . -type f -name __*__.py | egrep "__openerp__|__manifes__" | while read l
     do
 	dirname $l
     done | bsort
