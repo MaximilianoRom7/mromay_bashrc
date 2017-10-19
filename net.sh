@@ -33,7 +33,7 @@ function net_check_google() {
     : '
     WATCHS FOR EVERY SECOND A CURL TO GOOGLE.COM.AR
     '
-    watch -n 1 'curl "https://www.google.com.ar/" | egrep -o ".{1,150}"'
+    watch -n 1 'curl "https://www.google.com.ar/" 2> /dev/null | egrep -o ".{1,150}"'
 }
 
 

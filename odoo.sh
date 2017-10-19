@@ -187,4 +187,15 @@ function odoo_choose_addons_folder() {
     cd $folder
 }
 
+function odoo_addons_autoinstalled() {
+    : '
+    LIST ALL THE ADDONS THAT ARE AUTOINSTALLED
+    WHEN CREATING A NEW ODOO DATABASE
+    '
+    egrep -R "['\"]auto_install['\"]: True" --include __\*__.py | while read l
+    do
+	basename $(egrep -o "^.+/" <<< $l)
+    done | bsort
+}
+
 loaded odoo
