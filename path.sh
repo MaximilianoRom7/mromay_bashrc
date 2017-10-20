@@ -44,4 +44,29 @@ function path_dirname() {
     done
 }
 
+function path_uniq() {
+    : '
+    GIVEN A LIST OF PATHS IF ANY
+    PATH IS PARENT OF THE OTHERS THEN THIS PATH IS OMMITED
+    FOR EXAMPLE
+    /root/asd
+    /root/asd/asd
+    /root/media
+    /root/media/asd
+    IF YOU APPLY THIS FUNCTION TO THESE PATHS
+    THE RESULT WILL BE
+    /root/asd/asd
+    /root/media/asd
+    '
+    IFS=
+    std=$(cat /dev/stdin)
+    echo $std | while read l
+    do
+	if [ $(egrep "^$l" <<< "$std" | wc -l) -eq 1 ]
+	then
+	    echo $l
+	fi
+    done | bsort
+}
+
 loaded path
