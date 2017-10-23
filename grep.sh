@@ -142,5 +142,19 @@ function grep_multitail() {
     fi
 }
 
+function grepr_files() {
+    : '
+    GET THE FILES FROM THE RECURSIVE GREP
+    '
+    egrep -o "^[^:]+" 2> /dev/null | bsort
+}
+
+function grepr_folders() {
+    : '
+    GET THE FOLDERS FROM THE RECURSIVE GREP
+    '
+    grepr_files | xargs -L 1 dirname | bsort
+}
+
 
 loaded grep

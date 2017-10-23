@@ -198,4 +198,18 @@ function odoo_addons_autoinstalled() {
     done | bsort
 }
 
+function odoo_find_within_addons() {
+    : '
+    FIND TEXT WITHIN THE *.PY FILES IN THE ADDONS
+    '
+    IFS=
+    search=$(egrep -R "$@" . --include \*.py 2> /dev/null)
+    search2=$(egrep "/addons/" <<< $search)
+    if [ "$search2" ]
+    then
+	search=$search2
+    fi
+    egrep -v "l10n_" <<< $search | grepr_folders
+}
+
 loaded odoo
