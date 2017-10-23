@@ -7,7 +7,7 @@ function list_manpages() {
     '
     manpath | tr -s ':' '\n' | while read l
     do
-	find $l -type f | while read f
+	find -L $l -type f | while read f
 	do
 	    basename $f | grep -oE "^[^\.]+"
 	done

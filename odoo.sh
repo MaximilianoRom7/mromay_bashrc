@@ -150,14 +150,14 @@ function odoo_find_addons() {
     : '
     FIND ALL THE ADDONS IN THE CURRENT DIRECTORY
     '
-    find . -type f -name \*.py | egrep "/__openerp__\.py$|/__manifest__\.py$" | while read l
+    find -L . -type f -name \*.py | egrep "/__openerp__\.py$|/__manifest__\.py$" | while read l
     do
 	dirname $l
     done | bsort
 }
 
 function odoo_find_addons_folders() {
-    find ~ -type d | egrep -o ".*(/odoo[^/]*/|/openerp/)addons/" | bsort
+    find -L ~ -type d | egrep -o ".*(/odoo[^/]*/|/openerp/)addons/" | bsort
 }
 
 function odoo_find_odoos() {
@@ -219,7 +219,10 @@ function odoo_addon_fields() {
     '
     files_with_ext py | egrep -v "__" | while read l
     do
-	egrep -o "$1[^ ]* = fields\..{1,100}" $l | egrep ".* ="
+	egrep -o "$1[^ ]* = fields\..{1,100}" $l | egrep ".* =" | while read f
+	do
+	    echo "$l: $f"
+	done
     done
 }
 

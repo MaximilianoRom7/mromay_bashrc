@@ -7,8 +7,8 @@ function downloads() {
     LIST ALL THE FILES IN THE DOWNLOADS DIRECTORIES
     OF ALL USERS IF IT HAS PERMISSIONS
     '
-    find /root/Downloads -maxdepth 1 2> /dev/null
-    find /home/*/Downloads -maxdepth 1 2> /dev/null
+    find -L /root/Downloads -maxdepth 1 2> /dev/null
+    find -L /home/*/Downloads -maxdepth 1 2> /dev/null
 }
 
 function tree_sort_time() {
@@ -80,9 +80,9 @@ function files_with_ext() {
     '
     if [ $2 ]
     then
-	find $1 -type f | grep -E "\.$2$"
+	find -L $1 -type f | grep -E "\.$2$"
     else
-	find . -type f | grep -E "\.$1$"
+	find -L . -type f| grep -E "\.$1$"
     fi
 }
 
@@ -133,7 +133,7 @@ function files_binaries() {
     then
 	echo echo $PATH | tr -s ":" "\n" | while read l
 	do
-	    find $l -type f -executable 2> /dev/null
+	    find -L $l -type f -executable 2> /dev/null
 	done | tee ~/.bins
     else
 	cat ~/.bins
@@ -150,7 +150,7 @@ function files_noext() {
     else
 	p=$1
     fi
-    find $p -type f | egrep -v "/\.git/" | egrep "/[^\.]+$"
+    find -L $p -type f | egrep -v "/\.git/" | egrep "/[^\.]+$"
 }
 
 
