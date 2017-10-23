@@ -29,32 +29,40 @@ function doc_function() {
     WILL RETURN THE DOCUMENTATION OF THIS FUNCTION.
     '
     IFS=
-    # 70 charactes width
-    dash="----------------------------------------------------------------------"
-    echo
-    echo $dash
-    echo "    $1:"
-    echo $dash
-    echo
-    egrep -nR "^function $1\(\)" $home/mromay_bashrc | while read l
-    do
-	v1=$(cut -d ':' -f1 <<< $l)
-	v2=$(cut -d ':' -f2 <<< $l)
-	v3=$(($v2 + $doc_max_func_lines))
-	docs=$(sed -n "$v2,$v3"p $v1 | sed -n '/function .*{/,/^}/p')
-	v3=$(egrep -n "^}" <<< $docs | head -n 1 | cut -d ':' -f1)
-	v3=$(( $v3 + $v2 - 2 ))
-	v2=$(( $v2 + 1 ))
-	docs=$(sed -n "$v2,$v3"p $v1)
-	docs=$(echo $docs | sed -n "/: '$/,/'$/p")
-	if [ "$docs" ]
-	then
-	    echo $docs
-	    echo
-	    echo $dash
-	    echo
-	fi
-    done
+    search=$(egrep -nR "^function $1\(\)" $home/mromay_bashrc 2> /dev/null)
+    if [ "$search" ]
+    then
+	# 70 charactes width
+	dash="----------------------------------------------------------------------"
+	echo
+	echo $dash
+	echo "    $1:"
+	echo $dash
+	echo
+	echo $search | while read l
+	do
+	    v1=$(cut -d ':' -f1 <<< $l)
+	    v2=$(cut -d ':' -f2 <<< $l)
+	    v3=$(($v2 + $doc_max_func_lines))
+	    docs=$(sed -n "$v2,$v3"p $v1 | sed -n '/function .*{/,/^}/p')
+	    v3=$(egrep -n "^}" <<< $docs | head -n 1 | cut -d ':' -f1)
+	    v3=$(( $v3 + $v2 - 2 ))
+	    v2=$(( $v2 + 1 ))
+	    docs=$(sed -n "$v2,$v3"p $v1)
+	    docs=$(echo $docs | sed -n "/: '$/,/'$/p")
+	    if [ "$docs" ]
+	    then
+		echo $docs
+		echo
+		echo $dash
+		echo
+	    fi
+	done
+    else
+	echo
+	echo "Function Not Found $1"
+	echo
+    fi
 }
 
 function doc_list_functions() {
