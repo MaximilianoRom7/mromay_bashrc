@@ -66,4 +66,53 @@ function git_list_repos() {
     findd | grep -oP "^.*(?=/\.git$)"
 }
 
+function git_versions() {
+    :'
+    THIS FUNCTION RETURNS THE GIT HASH VERSION
+    OF ALL THE REPOSITORY FROM THE CURRENT PATH
+    '
+    IFS=
+    w=$(pwd)
+    git_list_repos | while read l
+    do
+	cd $l
+	echo $l $(git rev-parse --verify HEAD)
+	cd $w
+    done
+    cd $w
+}
+
+function git_versions_diff() {
+    : '
+    GIVEN TWO FILE PATHS THAT ARE THE RESULT
+    FROM THE "git_versions" FUNCTION, THIS FUNCTION RETURNS
+    THE LIST OF REPOSITORIES THAT DIFFER ON THE GIT HASH VERSION
+    '
+    IFS=
+    if [ "$2" ]
+    then
+	f1=$(cat "$1")
+	f2=$(cat "$2")
+    else
+	echo "You Must pass two file paths to compare versions"
+	return 1
+    fi
+    echo $f1 | while read l
+    do
+	l1=$(cut -d ' ' -f1 <<< $l)
+	v1=$(cut -d ' ' -f2 <<< $l)
+	l2=$(egrep "^$l1 "<<< $f2 | head -n 1)
+	if [ "$l2" ]
+	then
+	    v2=$(cut -d ' ' -f2 <<< $l2)
+	    if [ ! "$v1" == "$v2" ]
+	    then
+		echo $l1 $v1 $v2
+	    fi
+	else
+	    echo "NOT FOUND: "$l1
+	fi
+    done
+}
+
 loaded git

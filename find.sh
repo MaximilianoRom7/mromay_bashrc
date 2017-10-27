@@ -11,17 +11,17 @@ function findd() {
     '
     if [ "$3" ]
     then
-	find -L "$2" -maxdepth "$3" -type d -name \*"$1"\*
+	find -L "$2" -maxdepth "$3" -type d -name \*"$1"\* 2> /dev/null
     else
 	if [ "$2" ]
 	then
-	    find -L "$2" -type d -name \*"$1"\*
+	    find -L "$2" -type d -name \*"$1"\* 2> /dev/null
 	else
 	    if [ "$1" ]
 	    then
-		find -L . -type d -name \*"$1"\*
+		find -L . -type d -name \*"$1"\* 2> /dev/null
 	    else
-		find -L . -type d
+		find -L . -type d 2> /dev/null
 	    fi
 	fi
     fi
