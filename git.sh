@@ -67,7 +67,7 @@ function git_list_repos() {
 }
 
 function git_versions() {
-    :'
+    : '
     THIS FUNCTION RETURNS THE GIT HASH VERSION
     OF ALL THE REPOSITORY FROM THE CURRENT PATH
     '
