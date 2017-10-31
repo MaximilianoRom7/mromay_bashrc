@@ -17,6 +17,12 @@ In the file ~/.bashrc add the following line at the end of this file
 
 This loads the entire source of this bash library with all the functions
 
+To charge the functions is necessary to write source ~/.bashrc
+
+The explanations of each one is in the file, after the definition of the function. 
+
+For example, in the file odoo.sh are the functions for handeling odoo.
+
 
 Which functions ?
 
