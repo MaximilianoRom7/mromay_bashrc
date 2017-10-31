@@ -15,6 +15,7 @@ In the file ~/.bashrc add the following line at the end of this file
 
 . ~/mromay_bashrc/base.sh
 
+To enter to this file is necessary to write nano ~/mromay_bashrc/base.sh 
 
 This loads the entire source of this bash library with all the functions
 
