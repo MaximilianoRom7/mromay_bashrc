@@ -23,8 +23,10 @@ function python_defs() {
 }
 
 function python_package_info() {
-    python <<EOF
-import $1
+    if [ "$2" == "full" ]
+    then
+	python <<EOF
+import $1;
 attrs=dir($1);
 fil=lambda x: x[0] == '_' and x[-1] == '_' and not 'builtin' in x;
 attrs=filter(fil, attrs);
@@ -33,6 +35,36 @@ vals=dict(filter(bool, map(lambda x: x if x[1] else False, vals)));
 from json import dumps;
 print dumps(vals, indent=4)
 EOF
+    else
+	python <<EOF
+import $1;
+attrs=dir($1);
+vals={};
+func=lambda x, y, z: x.update({z: str(getattr(y, z))[:100]}) if hasattr(y, z) else False;
+func(vals, $1, '__author__');
+func(vals, $1, '__build__');
+func(vals, $1, '__date__');
+func(vals, $1, '__file__');
+func(vals, $1, '__name__');
+func(vals, $1, '__package__');
+func(vals, $1, '__path__');
+func(vals, $1, '__version__');
+func(vals, $1, '__VERSION__');
+from json import dumps;
+print dumps(vals, indent=4)
+EOF
+    fi
+}
+
+function python_packages() {
+    pip list | cut -d ' ' -f1
+}
+
+function python_packages_info() {
+    python_packages | while read l
+    do
+	python_package_info $l $1
+    done 2> /dev/null
 }
 
 loaded python
