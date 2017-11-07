@@ -143,7 +143,7 @@ function odoo_view_search() {
 }
 
 function odoo_view_models() {
-    odoo_view_search ">[^<]+<" | egrep "<field name=\"model\"" | tr -s ' ' | less
+    odoo_view_search "model=['\"][^'\"]+['\"]" -o | cut -d ':' -f2 | sort_count
 }
 
 function odoo_find_addons() {

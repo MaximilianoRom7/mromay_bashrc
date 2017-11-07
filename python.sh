@@ -22,4 +22,17 @@ function python_defs() {
     egrep -R "^[ \t]+def [^ ]+):" --include \*.py 2> /dev/null
 }
 
+function python_package_info() {
+    python <<EOF
+import $1
+attrs=dir($1);
+fil=lambda x: x[0] == '_' and x[-1] == '_' and not 'builtin' in x;
+attrs=filter(fil, attrs);
+vals=zip(attrs, map(lambda x: getattr($1, x), attrs));
+vals=dict(filter(bool, map(lambda x: x if x[1] else False, vals)));
+from json import dumps;
+print dumps(vals, indent=4)
+EOF
+}
+
 loaded python
