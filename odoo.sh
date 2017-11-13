@@ -226,6 +226,10 @@ function odoo_addon_fields() {
     done
 }
 
+function odoo_tag_last() {
+    git tag | egrep "10\." | sort | tail -1
+}
+
 function odoo_repos_updated() {
     f="repos"
     if [ ! -f "$f" ]
@@ -247,7 +251,7 @@ function odoo_repos_updated() {
 	then
 	    cd $p
 	    git fetch 2>&1 > /dev/null
-	    v=$(git_tag_last)
+	    v=$(odoo_tag_last)
 	    if [ ! "$v" == "$r2" ]
 	    then
 		echo "$r1 -$v- -$r2-"
