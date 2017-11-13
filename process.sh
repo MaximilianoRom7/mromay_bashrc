@@ -68,6 +68,10 @@ function process-kill() {
 }
 
 function process_first() {
+    : '
+    THIS FUNCTION RETURNS THE A LIST OF THE FIRST PROCESS
+    WITH PID LOWER THAN 1000
+    '
     ps -e | while read l
     do
 	p=$(cut -d ' ' -f1 <<< $l | egrep -o "[0-9]+" | head -n 1 )
