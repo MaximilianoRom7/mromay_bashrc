@@ -33,6 +33,10 @@ Functions from grep, to docker, to odoo, to python, to git, ext.
 
 These are utilities to help you search data and other things.
 
+In order to know the explanation of each function is posible to use
+
+the funtcion: doc_function <function_name>  
+
 
 Functions like:
 
