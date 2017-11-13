@@ -69,4 +69,34 @@ function path_uniq() {
     done | bsort
 }
 
+function path_directory_slash() {
+    : '
+    IF $1 IS A DIRECTORY ADD / TO THE END IF DOES NOT HAVE ONE
+    THE RESULT IS RETURNED IN A VARIABLE "PP"
+    '
+    if [ -d "$1" ]
+    then
+	pp="$1"
+	if [ ! $(egrep "/$" <<< $pp) ]
+	then
+	    pp="$pp/"
+	fi
+    fi
+}
+
+function path_hidden() {
+    : '
+    GET ALL THE HIDDEN FILES AND DIRECTORIES
+    IN THE CURRENT PATH OR IN THE PATH SPECIFIED
+    '
+    path_directory_slash "$1"
+    if [ "$pp" ]
+    then
+	p="$pp"
+    else
+	p=~/
+    fi
+    ls -d $p.* | egrep -v "/\.$|/\.\.$"
+}
+
 loaded path
