@@ -231,6 +231,22 @@ function odoo_tag_last() {
 }
 
 function odoo_repos_updated() {
+    : '
+    THIS FUNCTION HAS TO BE CALLED WHERE A FILE CALLED "repos" EXISTS
+    THIS FUNCTION USES THIS FILE AND COMPARES THE REPOSITORIES
+    LAST GIT TAG AGAINS THE TAG IN THE FILE "repos" TO SEE IF THERE
+    IS A DIFFERENCE
+
+    EXAMPLE:
+
+    account_payment_fix  -10.0.0.0.5-  -10.0.0.0.4-
+    locale_ar            -10.0.0.0.8-  -10.0.0.0.5-
+    aeroo_reports        -10.0.0.0.4-  -10.0.0.0.3-
+    l10n_ar_aeroo        -10.0.0.14-   -10.0.0.10-
+    pyafipws             -10.0.0.0.3-  -10.0.0.0.2-
+    sales_picking_rel    -10.0.0.1-    -10.0.0.0.2-
+    sale_stock           -10.0.0.0.2-  -10.0.0.0.1-
+    '
     f="repos"
     if [ ! -f "$f" ]
     then
