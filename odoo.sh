@@ -254,7 +254,7 @@ function odoo_repos_updated() {
 	    fi
 	    cd $k
 	fi
-    done
+    done | column -t
 }
 
 loaded odoo
