@@ -67,5 +67,20 @@ function process-kill() {
     done
 }
 
+function process_first() {
+    ps -e | while read l
+    do
+	p=$(cut -d ' ' -f1 <<< $l | egrep -o "[0-9]+" | head -n 1 )
+	if [ "$p" ] && [ "$p" -lt 1000 ]
+	then
+	    s=$(egrep -o "[^ ]+$" <<< $l)
+	    if [ $(which $s) ]
+	    then
+		echo $l
+	    fi
+	fi
+    done | column -t
+}
+
 
 loaded process
