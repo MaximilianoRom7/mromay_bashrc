@@ -238,14 +238,15 @@ function odoo_repos_updated() {
     IS A DIFFERENCE
 
     EXAMPLE:
-
-    account_payment_fix  -10.0.0.0.5-  -10.0.0.0.4-
-    locale_ar            -10.0.0.0.8-  -10.0.0.0.5-
-    aeroo_reports        -10.0.0.0.4-  -10.0.0.0.3-
-    l10n_ar_aeroo        -10.0.0.14-   -10.0.0.10-
-    pyafipws             -10.0.0.0.3-  -10.0.0.0.2-
-    sales_picking_rel    -10.0.0.1-    -10.0.0.0.2-
-    sale_stock           -10.0.0.0.2-  -10.0.0.0.1-
+    ADDONS                     LAST_TAG         REPOS_TAG
+    =========================  ===============  ===============
+    account_payment_fix        -10.0.0.0.5-     -10.0.0.0.4-
+    locale_ar                  -10.0.0.0.8-     -10.0.0.0.5-
+    aeroo_reports              -10.0.0.0.4-     -10.0.0.0.3-
+    l10n_ar_aeroo              -10.0.0.14-      -10.0.0.10-
+    pyafipws                   -10.0.0.0.3-     -10.0.0.0.2-
+    sales_picking_rel          -10.0.0.1-       -10.0.0.0.2-
+    sale_stock                 -10.0.0.0.2-     -10.0.0.0.1-
     '
     f="repos"
     if [ ! -f "$f" ]
