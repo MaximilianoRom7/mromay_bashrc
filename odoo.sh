@@ -257,7 +257,9 @@ function odoo_repos_updated() {
     c=$(cat "$f")
     k=$(pwd)
     git_login_longer
-    echo $c | while read l
+    cat <(echo "ADDONS                     LAST_TAG        REPOS_TAG") \
+        <(echo "=========================  =============== ===============") \
+        <(echo $c | while read l
     do
 	r=$(grep -oP "[^ /]+ [^ ]+$" <<< $l | sed 's/\.git//g')
 	r1=$(cut -d ' ' -f1 <<< $r)
@@ -274,7 +276,7 @@ function odoo_repos_updated() {
 	    fi
 	    cd $k
 	fi
-    done | column -t
+    done) | column -t
 }
 
 loaded odoo
