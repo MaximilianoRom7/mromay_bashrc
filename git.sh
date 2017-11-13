@@ -115,4 +115,16 @@ function git_versions_diff() {
     done
 }
 
+function git_branch_name() {
+    git branch | egrep "\* .*" | egrep -o " [^ ]+$" | sed 's/(//g' | sed 's/)//g' | sed 's/ //g'
+}
+
+function git_login_longer() {
+    git config --global credential.helper 'cache --timeout=2628000'
+}
+
+function git_tag_last() {
+    git tag | tail -1
+}
+
 loaded git

@@ -226,4 +226,35 @@ function odoo_addon_fields() {
     done
 }
 
+function odoo_repos_updated() {
+    f="repos"
+    if [ ! -f "$f" ]
+    then
+	echo "$f file does not exist"
+	return
+    fi
+    IFS=
+    c=$(cat "$f")
+    k=$(pwd)
+    git_login_longer
+    echo $c | while read l
+    do
+	r=$(grep -oP "[^ /]+ [^ ]+$" <<< $l | sed 's/\.git//g')
+	r1=$(cut -d ' ' -f1 <<< $r)
+	r2=$(cut -d ' ' -f2 <<< $r)
+	p=$(find .. -type d -name "$r1" 2> /dev/null | head -n 1)
+	if [ "$p" ]
+	then
+	    cd $p
+	    git fetch 2>&1 > /dev/null
+	    v=$(git_tag_last)
+	    if [ ! "$v" == "$r2" ]
+	    then
+		echo "$r1 -$v- -$r2-"
+	    fi
+	    cd $k
+	fi
+    done
+}
+
 loaded odoo

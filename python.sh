@@ -23,6 +23,11 @@ function python_defs() {
 }
 
 function python_package_info() {
+    if [ ! "$1" ]
+    then
+	echo "You have to provide a python package name"
+	return 1
+    fi
     if [ "$2" == "full" ]
     then
 	python <<EOF
