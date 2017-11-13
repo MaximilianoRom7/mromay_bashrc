@@ -69,7 +69,7 @@ function process-kill() {
 
 function process_first() {
     : '
-    THIS FUNCTION RETURNS THE A LIST OF THE FIRST PROCESS
+    THIS FUNCTION RETURNS THE LIST OF THE FIRST PROCESS
     WITH PID LOWER THAN 1000
     '
     ps -e | while read l
