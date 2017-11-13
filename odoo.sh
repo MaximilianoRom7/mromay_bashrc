@@ -238,6 +238,7 @@ function odoo_repos_updated() {
     IS A DIFFERENCE
 
     EXAMPLE:
+
     ADDONS                     LAST_TAG         REPOS_TAG
     =========================  ===============  ===============
     account_payment_fix        -10.0.0.0.5-     -10.0.0.0.4-
