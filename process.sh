@@ -72,10 +72,11 @@ function process_first() {
     THIS FUNCTION RETURNS THE LIST OF THE FIRST PROCESS
     WITH PID LOWER THAN 1000
     '
+    if [ $1 ]; then t=$1; else t=1000; fi
     ps -e | while read l
     do
-	p=$(cut -d ' ' -f1 <<< $l | egrep -o "[0-9]+" | head -n 1 )
-	if [ "$p" ] && [ "$p" -lt 1000 ]
+	p=$(cut -d ' ' -f1 <<< $l | egrep -o "[0-9]+" | head -n 1)
+	if [ "$p" ] && [ "$p" -lt $t ]
 	then
 	    s=$(egrep -o "[^ ]+$" <<< $l)
 	    if [ $(which $s) ]
@@ -83,7 +84,7 @@ function process_first() {
 		echo $l
 	    fi
 	fi
-    done | column -t
+    done | column -t | less
 }
 
 
