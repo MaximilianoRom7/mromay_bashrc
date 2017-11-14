@@ -292,6 +292,10 @@ function odoo_repos_updated() {
 }
 
 function odoo_services_restart() {
+    : '
+    RESTARTS THE ODOO SERVICES RUNNING IN DOCKER
+    ODOO-1 ODOO-2 ODOO-3 ODOO-4 ODOO-5
+    '
     seq 5 | while read l
     do
 	sudo systemctl restart odoo-$l
