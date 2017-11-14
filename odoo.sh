@@ -14,15 +14,25 @@ function odoo_services_test_load() {
     EVERY 0.1 SECONDS
     THIS IS A LOADING TEST
     '
-    while $(true)
-    do
-	curl 0.0.0.0:8050
-	curl 0.0.0.0:8060
-	curl 0.0.0.0:8070
-	curl 0.0.0.0:8080
-	curl 0.0.0.0:8090
-	sleep 0.1
-    done
+    if [ "$1" ]
+    then
+	while $(true)
+	do
+	    echo "50 60 70 80 90" | tr -s ' ' $'\n' | while read l
+	    do
+		curl 0.0.0.0:80$l
+	    done
+	    sleep "$1"
+	done
+    else
+	while $(true)
+	do
+	    echo "50 60 70 80 90" | tr -s ' ' $'\n' | while read l
+	    do
+		curl 0.0.0.0:80$l
+	    done
+	done
+    fi
 }
 
 function odoo_services_watch() {
@@ -279,6 +289,13 @@ function odoo_repos_updated() {
 	    cd $k
 	fi
     done) | column -t
+}
+
+function odoo_services_restart() {
+    seq 5 | while read l
+    do
+	sudo systemctl restart odoo-$l
+    done
 }
 
 loaded odoo
