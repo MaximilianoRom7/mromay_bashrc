@@ -33,5 +33,6 @@ import list
 import message
 import program
 import find
+import video
 
 loaded base
