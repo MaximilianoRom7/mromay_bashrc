@@ -1,4 +1,3 @@
-. $home/mromay_bashrc/imports.sh
 import vars
 import char
 import path

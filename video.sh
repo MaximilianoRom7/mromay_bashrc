@@ -1,4 +1,3 @@
-. $home/mromay_bashrc/imports.sh
 import logging
 
 function video_folder_to_mp3() {

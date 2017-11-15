@@ -1,7 +1,6 @@
 : '
   FUNCTIONS FOR BASH FUNCTION DOCUMENTATION
 '
-. $home/mromay_bashrc/imports.sh
 import sort
 import logging
 

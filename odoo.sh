@@ -1,4 +1,3 @@
-. $home/mromay_bashrc/imports.sh
 import sort
 import grep
 import path

@@ -1,4 +1,3 @@
-. $home/mromay_bashrc/imports.sh
 import path
 import logging
 

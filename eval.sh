@@ -1,7 +1,6 @@
 : '
   TRYING TO CREATE A REPL IN BASH ...
 '
-. $home/mromay_bashrc/imports.sh
 import logging
 
 function relp() {
