@@ -8,12 +8,15 @@ function video_folder_to_mp3() {
     ls *.mp4 | while read l
     do
 	f=$(sed 's/\.mp4$/\.mp3/g' <<< "$l")
-	if [ $(egrep "\.mp3$" <<< "$f") ] && [ ! -f "$f" ]
+	if [ $(egrep "\.mp3$" <<< "$f") ]
 	then
-	    echo ffmpeg -nostdin -i "$l" "$f" -nostats -loglevel 0
-	    ffmpeg -nostdin -i "$l" "$f" -nostats -loglevel 0
-	else
-	    echo "EXISTS: $f"
+	   if [ ! -f "$f" ]
+	   then
+	       echo ffmpeg -nostdin -i "$l" "$f" -nostats -loglevel 0
+	       ffmpeg -nostdin -i "$l" "$f" -nostats -loglevel 0
+	   else
+	       echo "EXISTS: $f"
+	   fi
 	fi
     done
 }
