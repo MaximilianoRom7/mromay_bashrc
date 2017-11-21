@@ -71,4 +71,41 @@ function python_packages_info() {
     done 2> /dev/null
 }
 
+function python_list() {
+    : '
+    MAKE A PYTHON LIST FROM MULTIPLE LINES
+    '
+    echo "[ "$(paste -s -d"," <<< $1)" ]"
+}
+
+function js_func_sort() {
+    : '
+    GIVEN A JS FILE RETURNS THE ORDER THAT THE FUNCTIONS SHOULD APPEAR
+    '
+    IFS=
+    s=$(cat $1)
+    ll=$(egrep ": function.*{" <<< "$s" | grep -oP "[^ \t]+(?=:)")
+    m=$(python_list \
+	    $(echo $ll | while read l
+	      do
+		  n=$(egrep -n "$l" <<< "$s" | egrep -v ": function" | cut -d ':' -f 1 | head -n 1)
+		  if [ ! "$n" ]
+		  then
+		      n="-1"
+		  fi
+		  python_list $(echo -e '"'$l'"'"\n$n")
+	      done
+	    ))
+    python <<EOF
+l=$m
+l1 = filter(lambda x: x[1] > 0, l)
+l2 = filter(lambda x: x[1] < 0, l)
+l1.sort(key=lambda a: a[1])
+l1 = map(lambda x: x[0], l1)
+l2 = map(lambda x: x[0], l2)
+for n in l1 + l2:
+    print n
+EOF
+}
+
 loaded python
