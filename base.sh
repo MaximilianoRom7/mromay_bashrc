@@ -34,5 +34,6 @@ import message
 import program
 import find
 import video
+import ssh
 
 loaded base

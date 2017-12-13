@@ -140,7 +140,15 @@ function odoo_fields_find() {
     FILES THAT CONTAINS THE FIELD
     YOU HAVE TO BE IN A ODOO FOLDER
     '
-    egrep -R "^[^#]+$1 = field[^(]+\(" . --include \*.py 2> /dev/null | egrep -v /locale_ar
+    egrep -nR "^[^#]+$1 = field[^(]+\(" . --include \*.py 2> /dev/null | egrep -v /locale_ar
+}
+
+function odoo_grep_singleton() {
+    egrep "^.|\[\[.+\]\]|[ ]*[^ ]+\([0-9]+(, [0-9]+)+\)" --color=always
+}
+
+function odoo_fields_selection() {
+    grep -nRA 8 "fields\.Selection(" --include \*.py | egrep -i "$@"
 }
 
 function odoo_models() {
