@@ -10,12 +10,26 @@ CAN BE USED JUST LIKE A NORMAL BASH FUNCTION
 """
 import socket
 import sys
+import os
 
-sys.path = ["/root/mromay_bashrc/xonsh_cripts"] + sys.path
+user = os.getlogin()
+xon_dir = "mromay_bashrc/xonsh_cripts"
+
+absolute_path = lambda l: os.sep + os.sep.join(l)
+
+path =  [user, xon_dir]
+
+if not user == "root":
+    path = ["home"] + path
+
+path =  absolute_path(path)
+
+sys.path = [path, path + "/local"] + sys.path
 
 from local import *
 
 def _domain_ip(args):
-    return socket.gethostbyname(args[0])
+    if args:
+        return socket.gethostbyname(args[0])
 
-aliases['domain_ip'] = _newline(_domain_ip)
+aliases['domain_ip'] = newline(_domain_ip)

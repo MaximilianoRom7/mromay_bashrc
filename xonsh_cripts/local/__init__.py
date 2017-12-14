@@ -1,1 +1,1 @@
-from .console import *
+from console import *
