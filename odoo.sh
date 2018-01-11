@@ -5,6 +5,7 @@ import logging
 import process
 import split
 import filter
+import git
 
 function odoo_services_test_load() {
     : '
@@ -308,5 +309,46 @@ function odoo_services_restart() {
 	sudo systemctl restart odoo-$l
     done
 }
+
+function odoo_data() {
+    ps aux | grep odoo | grep python | tr -s ' ' | cut -d ' ' -f 12,13,14,15,16 | grep "\-\-config" | bsort
+}
+
+function odoo_confs() {
+    if [ $1 ]; then data=$@; else data=$(odoo_data); fi
+    cat <(echo $data | egrep -o "\-\-config.*" | grep -oP "/.*|(?<= ).*") \
+	<(ls /etc/odoo*.conf 2> /dev/null) | bsort
+}
+
+function odoo_conf_value() {
+    IFS=
+    echo
+    data=$(odoo_data)
+    echo $data | while read l
+    do
+	conf=$(odoo_confs $l)
+	g=$(egrep "$@" $conf)
+	if [ "$g" ]; then echo -e "$l"; echo -e "$g\n"; fi
+    done
+}
+
+function odoo_conf_basic() {
+    odoo_conf_value "^addon|^long|^xmlrpc_port"
+}
+
+function odoo_addons_mod() {
+    : '
+    LIST THE ADDONS THAT ARE MODIFIED IN THIS REPOSITORY
+    '
+    git status | egrep "modified:" | grep "/addons/" | grep -oP "(?<=:).*" | sed 's/ //g'
+}
+
+function odoo_addons_diff() {
+    : '
+    LIST ALL THE MODIFICATIONS OF THE ADDONS
+    '
+    odoo_addons_mod | git_diff
+}
+
 
 loaded odoo

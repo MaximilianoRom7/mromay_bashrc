@@ -126,4 +126,18 @@ function git_tag_last() {
     git tag | tail -1
 }
 
+function git_diff_colors() {
+     sed 's/^+/'$'\033[92m''+/g' | sed 's/^-/'$'\033[91m''-/g' | sed '/^-|^+/! s/^/'$'\033[97m''/g'
+}
+
+function git_diff() {
+    : '
+    GIVEN A LIST OF FILES COMPARES TO THE PREVIOUS VERSION
+    '
+    while read l
+    do
+	git diff "$l"
+    done | git_diff_colors | less -RS
+}
+
 loaded git

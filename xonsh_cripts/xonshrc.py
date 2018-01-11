@@ -27,9 +27,21 @@ path =  absolute_path(path)
 sys.path = [path, path + "/local"] + sys.path
 
 from local import *
+from grep import *
 
-def _domain_ip(args):
-    if args:
-        return socket.gethostbyname(args[0])
+def _domain_ip(*args):
+    return socket.gethostbyname(*args)
+
+def _rd(*args, **kwargs):
+    print(args, kwargs)
+    return dict([(a, a) for a in range(10)])
+
+def _systemctl(*args, **kwargs):
+    txt = "systemctl " + str(*args)
+    print(txt)
+    return evalx(txt)
 
 aliases['domain_ip'] = newline(_domain_ip)
+aliases['cgrep'] = newline(grep)
+aliases['rd'] = newline(_rd)
+aliases['systemctl'] = newline(_systemctl)

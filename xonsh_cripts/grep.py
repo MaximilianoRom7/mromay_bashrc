@@ -18,6 +18,7 @@ def grep(text, path):
     """
     Filters the source of the file using regular expressions
     """
+    print(text, path)
     if not path:
         return ""
     lines = ""

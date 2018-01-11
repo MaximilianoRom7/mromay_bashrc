@@ -86,5 +86,12 @@ function process_first() {
     done | column -t | less
 }
 
+function nopass() {
+    : '
+    THIS FUNCTION LIST ALL THE PERMISSIONS THAT CAN BE USE WITH SUDO WITHOUT A PASSWORD
+    '
+    sudo -l | grep -A 1000 NOPASSWD: | sed 's/NOPASSWD:/\n/g' | tr -s ',' $'\n' | tail -n +2
+}
+
 
 loaded process
