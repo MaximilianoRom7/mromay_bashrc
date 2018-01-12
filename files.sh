@@ -152,5 +152,15 @@ function files_noext() {
     find -L $p -type f | egrep -v "/\.git/" | egrep "/[^\.]+$"
 }
 
+function files_type_text() {
+    : '
+    RETURNS THE FILES THAT ARE TEXT LIKE ASCII OR UTF-8
+    '
+    while read l
+    do
+	file "$l"
+    done | egrep -i ":.* text" | egrep -o "^[^:]+"
+}
+
 
 loaded files

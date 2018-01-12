@@ -137,7 +137,7 @@ function git_diff() {
     while read l
     do
 	git diff "$l"
-    done | git_diff_colors | less -RS
+    done | egrep -v "diff \-\-|old mode [0-9]+|new mode [0-9]+" | git_diff_colors | less -RS
 }
 
 loaded git

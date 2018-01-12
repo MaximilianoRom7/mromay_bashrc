@@ -98,4 +98,14 @@ function path_hidden() {
     ls -d $p.* | egrep -v "/\.$|/\.\.$"
 }
 
+function path_to_abs() {
+    : '
+    CHANGES A RELATIVE PATH WITH ../ TO AN ABSOLUTE PATH USING THE CURRENT DIRECTORY PATH
+    '
+    while read l
+    do
+	readlink -m "$l"
+    done
+}
+
 loaded path

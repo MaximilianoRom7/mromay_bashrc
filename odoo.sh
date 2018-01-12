@@ -6,6 +6,7 @@ import process
 import split
 import filter
 import git
+import files
 
 function odoo_services_test_load() {
     : '
@@ -340,7 +341,13 @@ function odoo_addons_mod() {
     : '
     LIST THE ADDONS THAT ARE MODIFIED IN THIS REPOSITORY
     '
-    git status | egrep "modified:" | grep "/addons/" | grep -oP "(?<=:).*" | sed 's/ //g'
+    mod=$(git status | egrep "modified:" | grep -oP "(?<=:).*" | sed 's/ //g' | path_to_abs | files_type_text)
+    a=$(echo "$mod" | grep "/addons/")
+    if [ "$a" ]
+    then
+	mod="$a"
+    fi
+    echo "$mod"
 }
 
 function odoo_addons_diff() {
