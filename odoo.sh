@@ -357,5 +357,24 @@ function odoo_addons_diff() {
     odoo_addons_mod | git_diff
 }
 
+function odoo_view_fields_props() {
+    : '
+    THIS FUNCTION RETURNS THE LIST OF FIELD PROPS USED IN ODOO LIKE THIS:
+
+    attrs
+    avg
+    class
+    clickable
+    colspan
+    context
+    default_focus
+    digits
+    domain
+    editable
+    ...
+    '
+    egrep -R "<field " --include \*.xml | grep -oP "(?<= )[a-zA-Z\-_]+(?==['\"])" | bsort
+}
+
 
 loaded odoo
