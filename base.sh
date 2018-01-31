@@ -36,5 +36,6 @@ import find
 import video
 import ssh
 import watch
+import service
 
 loaded base

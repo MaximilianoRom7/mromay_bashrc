@@ -32,4 +32,17 @@ function filter_uniq_path() {
     done
 }
 
+function filter_files() {
+    : '
+    RETURN THE LINE THAT PATHS OF EXISTING FILES
+    '
+    while read l
+    do
+	if [ -f "$l" ]
+	then
+	    echo $l
+	fi
+    done
+}
+
 loaded filter
