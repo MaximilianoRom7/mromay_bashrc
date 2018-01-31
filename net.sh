@@ -35,5 +35,25 @@ function net_check_google() {
     watch -n 1 'curl "https://www.google.com.ar/" 2> /dev/null | egrep -o ".{1,150}"'
 }
 
+function net_connect() {
+    IFS=
+    home=wlp9s0-Speedy-CAC150
+    if [ $(netctl list | grep $home) ]
+    then
+	net=$home
+    else
+	echo "Choose a Wifi Network:"
+	nets=$(cat -n <(netctl list))
+	echo $nets
+	echo -n "Option: "
+	read line </dev/stdin
+	net=$(echo $nets | sed $line'q;d' | tr -s ' ' | cut -d ' ' -f 3)
+	# echo "line: " $line
+	# echo "nets: " $nets
+	# echo "net: " $net
+    fi
+    sudo /usr/lib/netctl/network stop $net
+    sudo /usr/lib/netctl/network start $net
+}
 
 loaded net
