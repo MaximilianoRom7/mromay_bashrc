@@ -12,4 +12,11 @@ function watch_process_file() {
     done
 }
 
+function watch_dir_modify() {
+    : '
+    Watches all the files in a directory for the events create, delete, modify
+    '
+    while inotifywait -q -r -e create -e delete -e modify "$1"; do true; done
+}
+
 loaded char
