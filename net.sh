@@ -36,24 +36,30 @@ function net_check_google() {
 }
 
 function net_connect() {
-    IFS=
-    home=wlp9s0-Speedy-CAC150
-    if [ $(netctl list | grep $home) ]
+    # check if it is alredy connected
+    # if not then connect to a wifi
+    timeout 0.2 ping -c 1 8.8.8.8 > /dev/null
+    if [ ! $? -eq 0 ]
     then
-	net=$home
-    else
-	echo "Choose a Wifi Network:"
-	nets=$(cat -n <(netctl list))
-	echo $nets
-	echo -n "Option: "
-	read line </dev/stdin
-	net=$(echo $nets | sed $line'q;d' | tr -s ' ' | cut -d ' ' -f 3)
-	# echo "line: " $line
-	# echo "nets: " $nets
-	# echo "net: " $net
+	IFS=
+	home=wlp9s0-Speedy-CAC150
+	if [ $(netctl list | grep $home) ]
+	then
+	    net=$home
+	else
+	    echo "Choose a Wifi Network:"
+	    nets=$(cat -n <(netctl list))
+	    echo $nets
+	    echo -n "Option: "
+	    read line </dev/stdin
+	    net=$(echo $nets | sed $line'q;d' | tr -s ' ' | cut -d ' ' -f 3)
+	    # echo "line: " $line
+	    # echo "nets: " $nets
+	    # echo "net: " $net
+	fi
+	sudo /usr/lib/netctl/network stop $net
+	sudo /usr/lib/netctl/network start $net
     fi
-    sudo /usr/lib/netctl/network stop $net
-    sudo /usr/lib/netctl/network start $net
 }
 
 loaded net
