@@ -140,4 +140,13 @@ function git_diff() {
     done | egrep -v "diff \-\-|old mode [0-9]+|new mode [0-9]+" | git_diff_colors | less -RS
 }
 
+function git_local_config() {
+    : '
+    git config user.email
+    git config user.name
+    '
+    git config user.email "$1"
+    git config user.name "$2"
+}
+
 loaded git
