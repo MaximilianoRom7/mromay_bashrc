@@ -155,5 +155,18 @@ function grepr_folders() {
     grepr_files | xargs -L 1 dirname | bsort
 }
 
+function grep_in() {
+    : '
+    APPLY GREP TO EACH FILE LIKE "GREP -R"
+    '
+    while read l;
+    do
+	grep -n "$@" "$l" | while read p
+	do
+	    echo "$l:$p"
+	done
+    done
+}
+
 
 loaded grep

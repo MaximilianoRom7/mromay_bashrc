@@ -162,5 +162,18 @@ function files_type_text() {
     done | egrep -i ":.* text" | egrep -o "^[^:]+"
 }
 
+function files_contains() {
+    : '
+    LISTS THE FILES THAT CONTAINS THE STRING
+    '
+    p=$(sed 's/\./\\./g' <<< "$1")
+    if [ "$2" ]
+    then
+	find -L -type f -name "$2" | while read l; do if [[ $(egrep "$p" "$l") ]]; then echo $l; fi; done
+    else
+	find -L -type f | while read l; do if [[ $(egrep "$p" "$l") ]]; then echo $l; fi; done
+    fi
+}
+
 
 loaded files

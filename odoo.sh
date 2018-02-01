@@ -135,7 +135,7 @@ function odoo_addons_versions() {
 	egrep -Rn ".version.:" --include __openerp__.py --include __manifest__.py 2> /dev/null | column -t
     fi
 }
-    
+
 function odoo_fields_find() {
     : '
     GIVEN A FIELD NAME THIS FUNCTION RETURNS ALL THE PYTHON
@@ -281,23 +281,23 @@ function odoo_repos_updated() {
     cat <(echo "ADDONS                     LAST_TAG        REPOS_TAG") \
         <(echo "=========================  =============== ===============") \
         <(echo $c | while read l
-    do
-	r=$(grep -oP "[^ /]+ [^ ]+$" <<< $l | sed 's/\.git//g')
-	r1=$(cut -d ' ' -f1 <<< $r)
-	r2=$(cut -d ' ' -f2 <<< $r)
-	p=$(find .. -type d -name "$r1" 2> /dev/null | head -n 1)
-	if [ "$p" ]
-	then
-	    cd $p
-	    git fetch 2>&1 > /dev/null
-	    v=$(odoo_tag_last)
-	    if [ ! "$v" == "$r2" ]
-	    then
-		echo "$r1 -$v- -$r2-"
-	    fi
-	    cd $k
-	fi
-    done) | column -t
+	  do
+	      r=$(grep -oP "[^ /]+ [^ ]+$" <<< $l | sed 's/\.git//g')
+	      r1=$(cut -d ' ' -f1 <<< $r)
+	      r2=$(cut -d ' ' -f2 <<< $r)
+	      p=$(find .. -type d -name "$r1" 2> /dev/null | head -n 1)
+	      if [ "$p" ]
+	      then
+		  cd $p
+		  git fetch 2>&1 > /dev/null
+		  v=$(odoo_tag_last)
+		  if [ ! "$v" == "$r2" ]
+		  then
+		      echo "$r1 -$v- -$r2-"
+		  fi
+		  cd $k
+	      fi
+	  done) | column -t
 }
 
 function odoo_services_restart() {
@@ -374,6 +374,30 @@ function odoo_view_fields_props() {
     ...
     '
     egrep -R "<field " --include \*.xml | grep -oP "(?<= )[a-zA-Z\-_]+(?==['\"])" | bsort
+}
+
+function odoo_backup_unzip() {
+    : '
+    UNZIP A ZIP FILE INTO A FOLDER WITH THE SAME NAME BUT WITHOUT THE EXTENSION
+    TAKES ONE ARGUMENT THE ZIP FILE
+    EXAMPLE:
+    odoo_backup_unzip minetech.zip
+    DECOMPRESS INTO THE FOLDER "minetech"
+    IF NOT FILE IS GIVEN DECOMPRESS ALL THE FILES IN THE DIRECTORY
+    '
+    if [ -f "$1" ]
+    then
+	d=$(sed 's/\.zip$//'<<< $1)
+	mkdir $d
+	yes | unzip "$l" -d "$d"
+    else
+	ls *.zip | while read l
+	do
+	    d=$(sed 's/\.zip$//'<<< $l)
+	    mkdir $d
+	    yes | unzip "$l" -d "$d"
+	done
+    fi
 }
 
 
