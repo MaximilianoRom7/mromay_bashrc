@@ -175,5 +175,13 @@ function files_contains() {
     fi
 }
 
+function files_perms() {
+    : '
+    LIST THE FILES AND THEIR PERMISSIONS
+    THE DIFFERENCE FROM ls -lR IS THAT THIS COMMAND SHOWS THE FULL PATH
+    '
+    find "$1" -type f | xargs -L 1 ls -l | column -t | less
+}
+
 
 loaded files
