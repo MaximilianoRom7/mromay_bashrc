@@ -180,7 +180,13 @@ function files_perms() {
     LIST THE FILES AND THEIR PERMISSIONS
     THE DIFFERENCE FROM ls -lR IS THAT THIS COMMAND SHOWS THE FULL PATH
     '
-    find "$1" -type f | xargs -L 1 ls -l | column -t | less
+    if [ -d "$1" ]
+    then
+	d="$1"
+    else
+	d="."
+    fi
+    find "$d" -type f | xargs -L 1 ls -l | column -t | less
 }
 
 
