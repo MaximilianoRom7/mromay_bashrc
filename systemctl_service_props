@@ -1,0 +1,121 @@
+# ConditionPathExists
+# PrivateNetwork
+# WantedBy
+#CapabilityBoundingSet
+#ExecReload
+#Restart
+#WatchdogSec
+; CapabilityBoundingSet
+; Group
+; MemoryDenyWriteExecute
+; NoNewPrivileges
+; PrivateTmp
+; ProtectHome
+; ProtectSystem
+; User
+; group
+; user
+After
+Alias
+AllowIsolate
+Also
+AmbientCapabilities
+AssertPathExists
+Before
+BindsTo
+BusName
+CPUSchedulingPolicy
+CapabilityBoundingSet
+ConditionACPower
+ConditionCapability
+ConditionDirectoryNotEmpty
+ConditionFileIsExecutable
+ConditionFileNotEmpty
+ConditionFirstBoot
+ConditionKernelCommandLine
+ConditionNeedsUpdate
+ConditionPathExists
+ConditionPathIsDirectory
+ConditionPathIsMountPoint
+ConditionPathIsReadWrite
+ConditionPathIsSymbolicLink
+ConditionVirtualization
+Conflicts
+DefaultDependencies
+Description
+Documentation
+DynamicUser
+Environment
+EnvironmentFile
+ExecReload
+ExecStart
+ExecStartPre
+ExecStop
+ExecStopPost
+FileDescriptorStoreMax
+Group
+IOSchedulingClass
+IOSchedulingPriority
+IPAddressDeny
+IgnoreOnIsolate
+IgnoreSIGPIPE
+KillMode
+KillSignal
+LimitNOFILE
+LimitNPROC
+LockPersonality
+LogsDirectory
+MemoryDenyWriteExecute
+MountFlags
+Nice
+NoNewPrivileges
+NonBlocking
+NotifyAccess
+OOMScoreAdjust
+OnFailure
+OnFailureJobMode
+PIDFile
+PrivateDevices
+PrivateNetwork
+PrivateTmp
+ProtectControlGroups
+ProtectHome
+ProtectKernelModules
+ProtectKernelTunables
+ProtectSystem
+ReadWritePaths
+RefuseManualStop
+RemainAfterExit
+Requires
+RequiresMountsFor
+Restart
+RestartSec
+RestrictAddressFamilies
+RestrictNamespaces
+RestrictRealtime
+RuntimeDirectory
+RuntimeDirectoryPreserve
+SendSIGHUP
+Sockets
+StandardError
+StandardInput
+StandardOutput
+StateDirectory
+StopWhenUnneeded
+SuccessExitStatus
+SupplementaryGroups
+SystemCallArchitectures
+SystemCallFilter
+TTYPath
+TTYReset
+TTYVHangup
+TasksMax
+TimeoutSec
+Type
+UnsetEnvironment
+User
+UtmpIdentifier
+WantedBy
+Wants
+WatchdogSec
+WorkingDirectory

@@ -12,4 +12,8 @@ function service_files() {
     done | egrep -o "/[^ ]+\.service" | filter_files
 }
 
+function service_props_count() {
+    service_files | while read l; do echo $(cat $l | grep -oP "^[^=]+(?==)" | wc -l) $l; done | sort -g -r -k 1 | less
+}
+
 loaded service

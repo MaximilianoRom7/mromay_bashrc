@@ -31,7 +31,7 @@ function process_ignore() {
     : '
     CALLS A PROGRAM IN THE BACKGOUND
     '
-    nohup "$@" &
+    nohup "$@" 2>&1 > /dev/null &
 }
 
 alias ignore=process_ignore

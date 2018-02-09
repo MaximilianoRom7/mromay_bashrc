@@ -10,6 +10,7 @@ fi
 
 . $home/mromay_bashrc/imports.sh
 import logging
+import profile
 import char
 import odoo
 import docker
@@ -37,5 +38,6 @@ import video
 import ssh
 import watch
 import service
+import desktop
 
 loaded base

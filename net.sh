@@ -42,7 +42,7 @@ function net_connect() {
     if [ ! $? -eq 0 ]
     then
 	IFS=
-	home=wlp9s0-Speedy-CAC150
+	home=wlp9s0-Speedy-675258
 	if [ $(netctl list | grep $home) ]
 	then
 	    net=$home
