@@ -400,5 +400,20 @@ function odoo_backup_unzip() {
     fi
 }
 
+function odoo_create_basic() {
+    : '
+    CREATE AN SQUELETON, EMPTY ADDON
+    '
+    echo -n "Name of the addon ?: "
+    read addon_name </dev/stdin
+    addon_name=$(echo $addon_name | tr -s ' ' | sed 's/ /_/g')
+    mkdir $addon_name
+    touch $addon_name/__init__.py
+    mkdir $addon_name/models
+    mkdir $addon_name/views
+    cp $bpath/addon_squeleton/__openerp__.py $addon_name/__openerp__.py
+    cp $bpath/addon_squeleton/view.xml $addon_name/views/view.xml
+    cp $bpath/addon_squeleton/model.py $addon_name/models/model.py
+}
 
 loaded odoo

@@ -8,6 +8,8 @@ else
     home=/home/mromay
 fi
 
+bpath=$home/mromay_bashrc
+
 . $home/mromay_bashrc/imports.sh
 import logging
 import profile
