@@ -55,7 +55,13 @@ function greprl() {
     RETURNS __init__.py: def func():
     BECOUSE AT THE LEFT OF THE COLON THERE IS "__init__.py" AND "init" WAS FOUND
     '
-    egrep ".*$1.*:.*" | less
+    n=$1
+    if [ $2 ]
+    then
+	egrep -o "^[^:\-]*$n[^:\-]*"
+    else
+	egrep "^[^:\-]*$n[^:\-]*"
+    fi
 }
 
 function grep_num() {

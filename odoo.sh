@@ -416,4 +416,9 @@ function odoo_create_basic() {
     cp $bpath/addon_squeleton/model.py $addon_name/models/model.py
 }
 
+function odoo_view_find_form() {
+    model=$(echo $1 | sed 's/\./\\\./g')
+    grep -RA 5 ">$model<" --include \*.xml | grep "<form" | greprl "" . | bsort
+}
+
 loaded odoo
