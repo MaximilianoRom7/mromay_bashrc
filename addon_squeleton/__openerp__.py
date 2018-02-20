@@ -10,6 +10,6 @@
     # 'views/...'
     'data': [
         
-    ]
+    ],
     'application': True,
 }
