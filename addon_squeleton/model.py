@@ -1,6 +1,6 @@
 from odoo import api, fields, models, _
 
-class MiClase(models.model):
+class MiClase(models.Model):
     #
     # Clase de ejemplo
     #
