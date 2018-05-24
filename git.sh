@@ -156,5 +156,6 @@ alias gclone="git clone $@"
 alias glog="git log $@"
 alias gdiff="git diff $@"
 alias gcommit="git commit $@"
+alias gpush="git push $@"
 
 loaded git
