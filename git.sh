@@ -149,4 +149,12 @@ function git_local_config() {
     git config user.name "$2"
 }
 
+# git lazy shorthands
+alias gbranch="git branch $@"
+alias gstatus="git status $@"
+alias gclone="git clone $@"
+alias glog="git log $@"
+alias gdiff="git diff $@"
+alias gcommit="git commit $@"
+
 loaded git
