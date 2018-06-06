@@ -201,11 +201,15 @@ function links_from_folder() {
         do
             b=$(basename "$l")
             # IF SYMBOLIC LINK DOES NOT EXIST THEN MAKE LINK
-            if [ ! -L $b ]
+            if [ ! -L $b ] && [ ! -f $b ] && [ ! -d $b ]
             then
                 ln -s "$l" "$b"
+            else
+                echo "ERROR: file or directory exists '$(pwd)/$b'"
             fi
         done
+    else
+        echo "ERROR: file or directory does NOT exists '$1'"
     fi
 }
 
