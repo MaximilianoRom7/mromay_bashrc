@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+
+from urllib.request import urlopen
+import json
+import subprocess, shlex
+
+allProjects     = urlopen("http://gitlab.fusion.com.ar/api/v4/projects?private_token=5gs7aYxyFiqCK6bKv29V")
+allProjectsDict = json.loads(allProjects.read().decode())
+for thisProject in allProjectsDict: 
+    try:
+        thisProjectURL  = thisProject['ssh_url_to_repo']
+        command     = shlex.split('git clone %s' % thisProjectURL)
+        resultCode  = subprocess.Popen(command)
+
+    except Exception as e:
+        print("Error on %s: %s" % (thisProjectURL, e.strerror))

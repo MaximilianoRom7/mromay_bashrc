@@ -189,5 +189,25 @@ function files_perms() {
     find "$d" -type f | xargs -L 1 ls -l | column -t | less
 }
 
+function links_from_folder() {
+    : '
+    MAKE LINKS FROM EVERY FILE AND FOLDER WITHIN $1
+    IN THE CURRENT DIRECTORY
+    '
+    if [ -d "$1" ]
+    then
+        d="$1"
+        ls -d "$d"/*/ | while read l
+        do
+            b=$(basename "$l")
+            # IF SYMBOLIC LINK DOES NOT EXIST THEN MAKE LINK
+            if [ ! -L $b ]
+            then
+                ln -s "$l" "$b"
+            fi
+        done
+    fi
+}
+
 
 loaded files

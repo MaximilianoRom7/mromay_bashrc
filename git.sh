@@ -149,6 +149,10 @@ function git_local_config() {
     git config user.name "$2"
 }
 
+function git_fusion() {
+    http http://gitlab.fusion.com.ar/api/v4/projects?private_token=5gs7aYxyFiqCK6bKv29V
+}
+
 # git lazy shorthands
 alias gbranch="git branch $@"
 alias gstatus="git status $@"
