@@ -155,7 +155,11 @@ function odoo_fields_selection() {
 
 function odoo_models() {
     search="(^[ \t]*_name = ['\"]|^[ \t]*_inherit = ['\"])"
-    egrep -R "$search" . --include \*.py 2> /dev/null | while read l
+    egrep -R "$search" . --include \*.py 2> /dev/null
+}
+
+function odoo_models_names() {
+    odoo_models | while read l
     do
         grep -oP "(?<=['\"]).*(?=['\"])" <<< "$l"
     done | bsort

@@ -41,5 +41,6 @@ import ssh
 import watch
 import service
 import desktop
+import test
 
 loaded base
