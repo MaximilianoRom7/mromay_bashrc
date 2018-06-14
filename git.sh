@@ -66,8 +66,8 @@ function git_clone_repos() {
     cwd=$(pwd)
     dir_names | while read l
     do
-        cd $cwd
         git_clone_repos_user $l
+        cd $cwd
     done
 }
 

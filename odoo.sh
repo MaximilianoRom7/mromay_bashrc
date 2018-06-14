@@ -8,6 +8,33 @@ import filter
 import git
 import files
 
+function odoo_log_grep() {
+    : '
+    THIS FUNCTION FILTERS THE LOGS FROM A PYTHON APP SO YOU
+    ONLY SEE THE LOG MESSAGES FROM SPECIFIC LOGGERS
+
+    FOR EXAMPLE:
+    WHE RUNNING ODOO AND PRINTING THE LOG THROUGT THE CONSOLE
+    APPLY THIS FUNCTION LIKE THOS
+
+    odoo.py --config odoo-server.conf | odoo_log_grep "odoo.addons.l10n_ar_afipws"
+
+    THIS ALLOWS YOU TO SEE ONLY THE LOGGS FROM THE ADDON "l10n_ar_afipws"
+    '
+    egrep "$1[^:]+: "
+}
+
+function odoo_log_grep_addons() {
+    : '
+    THIS FUNCTIONS FILTERS THE LOGS OF ODOO SO YOU ONLY
+    SEE THE LOGS OF ODOO ADDONS AND NOT THE LOGS OF OTHER
+    PYTHON PACKAGES
+
+    SEE DOC FOR "odoo_log_grep"
+    '
+    odoo_log_grep " odoo\.addons\."
+}
+
 function odoo_services_test_load() {
     : '
     IN THE DEVELOPMENT TESTING SERVER THERE ARE 5 ODOOS RUNNING
