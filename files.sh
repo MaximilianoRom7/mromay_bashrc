@@ -213,5 +213,20 @@ function links_from_folder() {
     fi
 }
 
+function links_list() {
+    find -L . -xtype l
+}
+
+function links_read() {
+    while read l
+    do
+        echo $l" "$(readlink $l)
+    done
+}
+
+function links_list_full() {
+    links_list | links_read | column -t | less
+}
+
 
 loaded files

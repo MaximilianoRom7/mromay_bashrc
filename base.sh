@@ -10,6 +10,8 @@ fi
 
 bpath=$home/mromay_bashrc
 
+IFS=
+
 . $home/mromay_bashrc/imports.sh
 import logging
 import profile
