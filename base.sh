@@ -44,5 +44,6 @@ import watch
 import service
 import desktop
 import test
+import database
 
 loaded base

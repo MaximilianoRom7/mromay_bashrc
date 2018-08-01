@@ -228,5 +228,23 @@ function links_list_full() {
     links_list | links_read | column -t | less
 }
 
+function sed_recursive() {
+    find . | while read l
+    do
+        a=${1//\//\\/}
+        b=${2//\//\\/}
+        sed -i 's/'$a'/'$b'/g' $l
+    done
+
+}
+
+function json_pritty_print() {
+    python2 <<EOF
+import json
+from pprint import pprint
+pprint(json.loads(open('./$1').read()))
+EOF
+}
+
 
 loaded files
