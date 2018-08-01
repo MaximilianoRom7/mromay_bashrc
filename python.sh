@@ -108,4 +108,11 @@ for n in l1 + l2:
 EOF
 }
 
+function python_import {
+    python2 <<EOF
+import $1
+print $1.__file__
+EOF
+}
+
 loaded python
