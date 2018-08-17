@@ -115,4 +115,19 @@ print $1.__file__
 EOF
 }
 
+function python_env_activate() {
+    if [ -d "$1" ] && [ -f "$1/bin/activate" ]
+    then
+        echo "PYTHON ENV ACTIVATED"
+        cd $1 && source bin/activate
+    else
+        echo "PYTHON ENV NO EXISTE'"$1"'"
+    fi
+}
+
+if [ "$PYTHON_ENV_ACTIVATE" ]
+then
+    python_env_activate $PYTHON_ENV_ACTIVATE
+fi
+
 loaded python

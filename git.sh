@@ -191,6 +191,38 @@ function git_checkout_update() {
     git_submodule_update
 }
 
+function git_top_level() {
+    git rev-parse --show-toplevel
+}
+
+function git_submodule_heads() {
+    git_top_level=$(git_top_level)
+    find ${git_top_level}/.git -name HEAD | egrep -v ".git/HEAD" | grep -v "/origin/HEAD" | grep -v "/logs/HEAD"
+}
+
+function git_submodule_versions() {
+    : '
+    .git/modules/packages/pyafipws/HEAD                         27e609dbdb1bc39a68c81588eb35af68ef93d358
+    .git/modules/addons/bank_extract_import/HEAD                abc1e8dbadf3a7fd561baccb1182b0033f52fbb5
+    .git/modules/addons/mod_base/HEAD                           aa2c3ec7b08e56f6a43abf90cf658bdf3b5b50e6
+    .git/modules/addons/sales_picking_rel/HEAD                  283e87f61b12ea7d570f971721d0a51218f6c1c8
+    .git/modules/addons/account_move_report/HEAD                6279bc466f9af601d558b4ab92d817b4f150a42c
+    .git/modules/addons/account_analytic_parent/HEAD            0d26a80ae1e10acf895ba5b420f99f4e00742215
+    .git/modules/addons/l10n_ar_account_vat_ledger_citi/HEAD    8b12b369ad836fcf83b641ea839edda5a136ede0
+    .git/modules/addons/account_bank_statement_import/HEAD      7be193d15e1f1d7b9c89d914319e662bb459e5a1
+    .git/modules/addons/web_export_view/HEAD                    101b803f9b81d2c6205e8dc6c083ea7105db3931
+    .git/modules/addons/account_bank_statement_import_csv/HEAD  24636df2d1621427c926bcb0f8bdf96ecdb9d882
+    .git/modules/addons/l10n_ar_account/HEAD                    349b7ad4bd3fcbc0b8d4d4411011abc6f0115cc7
+    .git/modules/addons/mod_account/HEAD                        08eb1fb85fcfd343ba6c36a46803ad8294396aef
+    .git/modules/addons/account_move_helper/HEAD                6a249b2a2ec93d411bc20fa081803861957aff87
+    .git/modules/addons/account_cost_center/HEAD                e0acfc587cff17ef2c8f517ffd885797c065eb34
+    '
+    git_submodule_heads | while read l
+    do
+        echo $l $(cat $l)
+    done | column -t
+}
+
 # git lazy shorthands
 alias gbranch="git branch $@"
 alias gstatus="git status $@"

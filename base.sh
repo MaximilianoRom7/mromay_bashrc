@@ -14,6 +14,7 @@ IFS=
 
 . $home/mromay_bashrc/imports.sh
 import logging
+import python
 import profile
 import char
 import odoo
@@ -26,7 +27,6 @@ import sort
 import custom
 import reloading
 import process
-import python
 import split
 import filter
 import doc
