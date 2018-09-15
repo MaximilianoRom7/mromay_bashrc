@@ -45,5 +45,6 @@ import service
 import desktop
 import test
 import database
+import pkg
 
 loaded base

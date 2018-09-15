@@ -93,5 +93,11 @@ function nopass() {
     sudo -l | grep -A 1000 NOPASSWD: | sed 's/NOPASSWD:/\n/g' | tr -s ',' $'\n' | tail -n +2
 }
 
+function eos_docker_start() {
+    docker run --rm --name eosio -d -p 8888:8888 -p 9876:9876 -v /tmp/work:/work -v /tmp/eosio/data:/mnt/dev/data -v /tmp/eosio/config:/mnt/dev/config eosio/eos-dev  /bin/bash -c "nodeos -e -p eosio --plugin eosio::producer_plugin --plugin eosio::history_plugin --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin --plugin eosio::http_plugin -d /mnt/dev/data --config-dir /mnt/dev/config --http-server-address=0.0.0.0:8888 --access-control-allow-origin=* --contracts-console --http-validate-host=false"
+}
+
+alias cleos='docker exec -it eosio /opt/eosio/bin/cleos -u http://localhost:8888'
+
 
 loaded process

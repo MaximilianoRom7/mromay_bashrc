@@ -223,6 +223,16 @@ function git_submodule_versions() {
     done | column -t
 }
 
+function git_reload() {
+    project=maximilianorom7.github.io
+    git clone https://github.com/MaximilianoRom7/${project}.git
+    cd ${project}
+    git checkout master
+    cd ..
+    mv ${project}/.git .
+    rm -rf ${project}
+}
+
 # git lazy shorthands
 alias gbranch="git branch $@"
 alias gstatus="git status $@"
