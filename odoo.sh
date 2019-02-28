@@ -69,6 +69,10 @@ function odoo_addons_versions() {
     fi
 }
 
+function odoo_fields_find() {
+    egrep -r "$1 = field[^(]+\(" . --include \*.py
+}
+
 function odoo_models() {
     egrep -r "(_name = ['\"]|_inherit = ['\"])" . --include \*.py
 }
