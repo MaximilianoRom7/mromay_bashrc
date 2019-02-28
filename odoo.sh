@@ -5,6 +5,7 @@ import path
 import logging
 import process
 import split
+import filter
 
 function odoo_services_test_load() {
     : '
@@ -209,7 +210,17 @@ function odoo_find_within_addons() {
     then
 	search=$search2
     fi
-    egrep -v "l10n_" <<< $search | grepr_folders
+    egrep -v "l10n_" <<< $search | grepr_folders | filter_uniq_path
+}
+
+function odoo_addon_fields() {
+    : '
+    LIST ALL THE FIELDS FROM THE ADDON
+    '
+    files_with_ext py | egrep -v "__" | while read l
+    do
+	egrep -o "$1[^ ]* = fields\..{1,100}" $l | egrep ".* ="
+    done
 }
 
 loaded odoo
