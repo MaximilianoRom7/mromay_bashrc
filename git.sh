@@ -166,6 +166,31 @@ function git_fusion() {
     http http://gitlab.fusion.com.ar/api/v4/projects?private_token=5gs7aYxyFiqCK6bKv29V
 }
 
+function git_submodule_update() {
+    : '
+    gets all the git submodules align with the parent repository
+    so there are no differences between the submodule version and the
+    versions in the parent repository
+
+    runs:
+    git clean -f
+    git stash
+    git submodule foreach git clean -f
+    git submodule foreach git stash
+    git submodule foreach update
+    '
+    git clean -f
+    git stash
+    git submodule foreach git clean -f
+    git submodule foreach git stash
+    git submodule update
+}
+
+function git_checkout_update() {
+    git checkout "$1"
+    git_submodule_update
+}
+
 # git lazy shorthands
 alias gbranch="git branch $@"
 alias gstatus="git status $@"

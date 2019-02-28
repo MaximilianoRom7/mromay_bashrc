@@ -8,6 +8,20 @@ import filter
 import git
 import files
 
+function odoo_model_permissions() {
+    : '
+    CHECKS IF THE CSV PERMISSIONS FILE IS VALID
+    '
+    cat -n $1 | while read l
+    do
+        # MUST HAVE 7 SEMICOLONS BECOUSE THE CSV MUST HAVE 8 COLUMNS
+        if [ ! $(grep -o "," | wc -l) -eq 7 ]
+        then
+            echo $l
+        fi
+    done
+}
+
 function odoo_log_grep() {
     : '
     THIS FUNCTION FILTERS THE LOGS FROM A PYTHON APP SO YOU
