@@ -69,6 +69,10 @@ function odoo_addons_versions() {
     fi
 }
 
+function odoo_models() {
+    egrep -r "(_name = ['\"]|_inherit = ['\"])" . --include \*.py
+}
+
 function odoo_view_search() {
     grepc "$1" $2 $3 $4 $5 $6 -ri --include \*.xml
 }
