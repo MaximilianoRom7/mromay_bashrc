@@ -46,5 +46,6 @@ import desktop
 import test
 import database
 import pkg
+import kafka
 
 loaded base

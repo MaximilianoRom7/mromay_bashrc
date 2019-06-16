@@ -1,5 +1,30 @@
 import logging
 
+function forever_sleep_1() {
+	while [ 0 ];
+	do
+		$1
+		sleep 1
+		clear
+	done
+}
+
+function _net_bell_internet_reachable() {
+	ping -c 1 8.8.8.8 && echo -e "\a"
+}
+
+function _net_bell_internet_unreachable() {
+	ping -c 1 8.8.8.8 || echo -e "\a"
+}
+
+function net_bell_internet_reachable() {
+	forever_sleep_1 _net_bell_internet_reachable
+}
+function net_bell_internet_unreachable() {
+	forever_sleep_1 _net_bell_internet_unreachable
+}
+
+
 function net_myip () {
     : '
     TRIES TO GET THE WLAN IP OF
